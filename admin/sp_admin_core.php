@@ -22,7 +22,7 @@ function sp_type_box( $type, $css_class = '' ){
 			register_setting( 'sp-settings', $field['name'] );
 			
 			$html.= '<tr><td width="200"><lable for="' . $field['name'] . '">' . $field['title'] . '</lable></td><td>';			
-			$html.= tk_wp_jqueryui_autocomplete( $field['name'] , 'seopress_seo_settings', $field['name'], $autocomplete_script , 'onfocus="this.style.color=\'#000\'" onblur="this.style.color=\'#CCC\'" style="width:100%;color:#CCC;"' ) ;			
+			$html.= tk_jqueryui_autocomplete( $field['name'] , 'seopress_seo_settings', $field['name'], $autocomplete_script , 'onfocus="this.style.color=\'#000\'" onblur="this.style.color=\'#CCC\'" style="width:100%;color:#CCC;"' ) ;			
 			$html.= '</td></tr>';
 			
 			$html = apply_filters( 'type-box-filter-' . $key , $html, $type );
@@ -32,8 +32,9 @@ function sp_type_box( $type, $css_class = '' ){
 		$html = apply_filters( 'sp_type_box_field_loop', $html, $type );
 	}
 	
-	$html.= '<tr><td width="200"><lable for="' . $type. '-noindex">' . __( 'Ban searchengines', 'seopress' ) . '</lable></td><td>';			
-	$html.= tk_wp_form_checkbox( $type . '-noindex', 'seopress_seo_settings', 'noindex' ) ;
+	$html.= '<tr><td width="200"><lable for="' . $type. '-noindex">' . __( 'Ban searchengines', 'seopress' ) . '</lable></td><td>';	
+	
+	$html.= tk_form_checkbox( $type . '-noindex', array( 'id' => $type . '-noindex', 'option_group' => 'seopress_seo_settings' ) ) ;
 	$html.= '</td></tr>';	
 	
 	$html = apply_filters( 'sp_type_box_field_html', $html, $type );

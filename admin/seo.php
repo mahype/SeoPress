@@ -7,7 +7,7 @@
  * @copyright Copyright (C) Themekraft.com
  **/
 
-function seopress_seo(){
+function seopress_seo( $content ){
 	global $seopress_plugin_url;
 	
 	$html = apply_filters( 'sp_settings_top', $html );
@@ -15,15 +15,12 @@ function seopress_seo(){
 	/*
 	 * Adding display
 	 */	
-	$display = new	TK_WP_ADMIN_DISPLAY( __( 'Page types', 'seopress'), 'plugins' );
-	$display->add_element( '<p>' . __( 'Optimize your Wordpress pages.', 'seopress') . '</p>' );
-	
-	$form = new TK_WP_FORM( 'seopress_seo_settings', 'POST', 'seopress_settings' );
+	$form = new TK_WP_Form( 'seopress_seo_settings', 'seopress_seo_settings' );
 	
 	/*
 	 * Adding jqueryui tabs
 	 */		
-	$tabs = new	TK_WP_JQUERYUI_TABS();
+	$tabs = new	TK_Jqueryui_Tabs();
 	
 	require_once( 'seo_wordpress.tab.php' );
 	require_once( 'seo_wordpressmu.tab.php' );
@@ -52,13 +49,11 @@ function seopress_seo(){
 	
 	$form->add_element( $tabs->get_html() );
 	
-	$display->add_element( $form->get_html() );
+	$html.= $form->get_html();
 	
-	$html.= $display->get_html();
+	$content.= apply_filters( 'sp_seo_settings_bottom', $html );
 	
-	$html = apply_filters( 'sp_seo_settings_bottom', $html );
-	
-	echo $html;
+	echo $content;
 
 	include( 'footer.php' );
 

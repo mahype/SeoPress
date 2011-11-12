@@ -24,9 +24,9 @@ function sp_admin_wp_tab(){
 
 	apply_filters( 'sp_admin_wp_sections', $sections );	
 
-	$accordion = new TK_WP_JQUERYUI_ACCORDION();
+	$accordion = new TK_Jqueryui_Accordion();
 	foreach( $sections AS $section ){
-		$accordion->add_section( $section['type'], $section['title'], sp_type_box( $section['type'] ), $section['extra_title'] );
+		$accordion->add_section( $section['type'], $section['title'], sp_type_box( $section['type'] ), array( 'extra_title' => $section['extra_title'] ) );
 	}
 	
 	$html.= $accordion->get_html();

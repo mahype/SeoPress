@@ -6,22 +6,20 @@
  * @author Sven Lehnert, Sven Wagener
  * @copyright Copyright (C) Themekraft.com
  **/
-function seopress_options(){
+function seopress_options( $content ){
 	
 	global $seopress_plugin_url;
 	
 	/*
 	 * Adding display
 	 */	
-	$display = new	TK_WP_ADMIN_DISPLAY( __( 'Options', 'seopress'), 'plugins' );
-	$display->add_element( '<p>' . __( 'Configure global settings for SeoPress.', 'seopress') . '</p>' );
 	
-	$form = new TK_WP_FORM( 'seopress_options' );
+	$form = new TK_WP_Form( 'seopress_options', 'seopress_options' );
 	
 	/*
 	 * Adding jqueryui tabs
 	 */		
-	$tabs = new	TK_WP_JQUERYUI_TABS();
+	$tabs = new	TK_Jqueryui_Tabs();
 	
 	require_once( 'options_seo.tab.php' );
 	
@@ -31,9 +29,11 @@ function seopress_options(){
 	
 	$form->add_element( $tabs->get_html() );
 	
-	$display->add_element( $form->get_html() );
+	$html.= $form->get_html();
 	
-	$display->write_html();		
+	$content.= apply_filters( 'sp_seo_settings_bottom', $html );
+	
+	echo $content;	
 	
 	include( 'footer.php' );
 	

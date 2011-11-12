@@ -39,7 +39,7 @@ function sp_admin_bp_plugins_tabs(){
 	$bp_seo_components = get_blog_option(SITE_ID_CURRENT_SITE,"bp_seo_plugins"); // <===== Have to be replaced with framework !!!	
 	
 	
-	$tabs = new	TK_WP_JQUERYUI_TABS();	
+	$tabs = new	TK_Jqueryui_Tabs();	
 	
 	// Getting all active components
 	$bp_components = sp_get_bp_components();
@@ -64,7 +64,7 @@ function seopress_component_tab( $bp_component ){
 	
 	$is_component = 0;
 	
-	$accordion = new TK_WP_JQUERYUI_ACCORDION();		
+	$accordion = new TK_Jqueryui_Accordion();		
 	
 	// If component has directory view
 	if( $sp_seo_settings['bp-componentspage-types-' . $bp_component . '-directory'] == 'on' ){
@@ -109,7 +109,7 @@ function seopress_component_config( $bp_component ){
 	$content.= '<tr>';
 	$content.= '<td width="50%"><div class="components_extend"><strong>' . sprintf( __( '"%s" has a directory page:' , 'seopress' ), str_replace( '_', ' ', ucwords( strtolower( $bp_component ) ) ) ) . '</strong></div></td>';
 	// $content.= '<td width="50%"><div class="components_extend"><input name="componentspage-types[' . $bp_component . '][directory]" type="checkbox" '.$checked.' value="1"></div></td>';
-	$content.= '<td width="50%"><div class="components_extend">' . tk_wp_form_checkbox( 'bp-componentspage-types-' . $bp_component . '-directory', 'seopress_seo_settings' ) . '</div></td>';
+	$content.= '<td width="50%"><div class="components_extend">' . tk_form_checkbox( 'bp-componentspage-types-' . $bp_component . '-directory', array( 'id' => 'bp-componentspage-types-' . $bp_component . '-directory' , 'option_group' => 'seopress_seo_settings' ) ) . '</div></td>';
 	$content.= '</tr>';
 	
 	$content.= '<tr>';		
@@ -129,7 +129,7 @@ function seopress_component_config( $bp_component ){
 			$content.= '<tr>';
 			$content.= '<td><div class="components_extend"><lable for="componentspage-types[' . $bp_main_component . '][plugin_extends][]">' . $component_name . '</lable></div></td>';
 			// $content.= '<td><div class="components_extend"><input name="componentspage-types[' . $bp_main_component . '][plugin_extends][]" id="componentspage-types[' . $bp_main_component . '][plugin_extends][]"  type="checkbox" '.$checked.'  value="' . $bp_sub_component . '" /></div></td>';
-			$content.= '<td><div class="components_extend">' . tk_wp_form_checkbox( 'bp-componentspage-types-' . $bp_main_component . '-' . $sub_comp . '', 'seopress_seo_settings' ) . '</div></td>'; 
+			$content.= '<td><div class="components_extend">' . tk_form_checkbox( 'bp-componentspage-types-' . $bp_main_component . '-' . $sub_comp, array( 'id' => 'bp-componentspage-types-' . $bp_main_component . '-' ,	'option_group' => 'seopress_seo_settings' ) ) . '</div></td>'; 
 			$content.= '</tr>';								
 											
 		}

@@ -30,34 +30,12 @@ load_plugin_textdomain( 'seopress', false, dirname( plugin_basename( __FILE__ ) 
 // Loading libraries
 require_once( 'includes/lib/io.inc.php' );
 require_once( 'includes/lib/wordpress/io.inc.php' );
-require_once( 'includes/lib/wordpress/wp.inc.php' );
+// require_once( 'includes/lib/wordpress/wp.inc.php' );
 require_once( 'includes/lib/wordpress/wp_url.inc.php' );
 require_once( 'includes/lib/wordpress/functions.php' );
 
-require_once( 'includes/lib/buddypress/bp.inc.php' );
+// require_once( 'includes/lib/buddypress/bp.inc.php' );
 require_once( 'includes/lib/buddypress/bp-functions.php' );
-
-
-require_once( 'includes/lib/wordpress/tk_html/tk_html.php' );
-require_once( 'includes/lib/wordpress/tk_html/tk_html_form.php' );
-require_once( 'includes/lib/wordpress/tk_html/tk_form_element.php' );
-require_once( 'includes/lib/wordpress/tk_html/tk_form_button.php' );
-require_once( 'includes/lib/wordpress/tk_html/tk_form_textfield.php' );
-require_once( 'includes/lib/wordpress/tk_html/tk_form_checkbox.php' );
-require_once( 'includes/lib/wordpress/tk_html/tk_form_select.php' );
-
-require_once( 'includes/lib/wordpress/tk_wp_gui/tk_wp_admin_display.php' );
-require_once( 'includes/lib/wordpress/tk_wp_gui/tk_wp_form.php' );
-require_once( 'includes/lib/wordpress/tk_wp_gui/tk_wp_form_textfield.php' );
-require_once( 'includes/lib/wordpress/tk_wp_gui/tk_wp_form_checkbox.php' );
-require_once( 'includes/lib/wordpress/tk_wp_gui/tk_wp_metabox.php' );
-require_once( 'includes/lib/wordpress/tk_wp_gui/tk_wp_option_group.php' );
-require_once( 'includes/lib/wordpress/tk_wp_gui/tk_wp_form_select.php' );
-
-require_once( 'includes/lib/wordpress/tk_wp_jquery/tk_wp_jqueryui.php' );
-require_once( 'includes/lib/wordpress/tk_wp_jquery/tk_wp_jqueryui_tabs.php' );
-require_once( 'includes/lib/wordpress/tk_wp_jquery/tk_wp_jqueryui_accordion.php' );
-require_once( 'includes/lib/wordpress/tk_wp_jquery/tk_wp_jqueryui_autocomplete.php' );
 
 // Loading css and js
 require_once( 'includes/css/loader.php' );
@@ -84,7 +62,16 @@ require_once( 'sp-update.php' );
 
 require_once( 'facebook/loader.php' );
 
-add_action( 'init' , 'seopress_init' , 0 );
+function tk_framework_init(){
+	// Registering the form where the data have to be saved
+	// $args['forms'] = array( 'myform' );
+	
+	$args['text_domain'] = 'seopress';
+	 
+	require_once( 'includes/lib/tkf/loader.php' );
+	tk_framework( $args );
+}
+add_action( 'init', 'tk_framework_init' );
 
 function sp_setup_redirect( $plugin ){
 	if( basename( $plugin ) == 'seopress.php' ){
@@ -95,4 +82,13 @@ function sp_setup_redirect( $plugin ){
 }
 add_action( 'activated_plugin', 'sp_setup_redirect');
 
+add_action( 'wp_loaded' , 'seopress_init' , 3 );
+/*
+function test_profiles( $user ){
+	echo '<pre>';
+	print_r( $user );
+	echo '</pre>';
+}
+add_action( 'personal_options', 'test_profiles', 1 );
+*/
 ?>

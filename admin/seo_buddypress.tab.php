@@ -27,7 +27,7 @@ function sp_admin_bp_tab(){
 	 */
 	$html.= '<h3>' .  __( 'Setup Buddypress pages', 'seopress') . '</h3>';
 		
-	$tabs = new	TK_WP_JQUERYUI_TABS();	
+	$tabs = new	TK_Jqueryui_Tabs();	
 	
 	if( tk_bp_is_active_component( 'activity' ) ){ 
 		$tabs->add_tab( 'cap_bp_activities', __ ('Activity', 'seopress'), sp_admin_bp_activities_tab() );
@@ -69,7 +69,7 @@ function sp_admin_bp_activities_tab(){
 
 	apply_filters( 'sp_admin_bp_activies_sections', $sections );	
 
-	$accordion = new TK_WP_JQUERYUI_ACCORDION();
+	$accordion = new TK_Jqueryui_Accordion();
 	foreach( $sections AS $section ){
 		$accordion->add_section( $section['type'], $section['title'], sp_type_box( $section['type'] ) );
 	}
@@ -91,7 +91,7 @@ function sp_admin_bp_members_tab(){
 
 	apply_filters( 'sp_admin_bp_members_sections', $sections );	
 
-	$accordion = new TK_WP_JQUERYUI_ACCORDION();
+	$accordion = new TK_Jqueryui_Accordion();
 	foreach( $sections AS $section ){
 		$accordion->add_section( $section['type'], $section['title'], sp_type_box( $section['type'] ) );
 	}
@@ -122,7 +122,7 @@ function sp_admin_bp_profiles_tab(){
 	
 	apply_filters( 'sp_admin_bp_profiles_sections', $sections );	
 
-	$accordion = new TK_WP_JQUERYUI_ACCORDION();
+	$accordion = new TK_Jqueryui_Accordion();
 	foreach( $sections AS $section ){
 		$accordion->add_section( $section['type'], $section['title'], sp_type_box( $section['type'] ) );
 	}
@@ -157,7 +157,7 @@ function sp_admin_bp_groups_tab(){
 	
 	apply_filters( 'sp_admin_bp_groups_sections', $sections );	
 
-	$accordion = new TK_WP_JQUERYUI_ACCORDION();
+	$accordion = new TK_Jqueryui_Accordion();
 	foreach( $sections AS $section ){
 		$accordion->add_section( $section['type'], $section['title'], sp_type_box( $section['type'] ) );
 	}
@@ -179,7 +179,7 @@ function sp_admin_bp_forums(){
 	
 	apply_filters( 'sp_admin_bp_forums_sections', $sections );	
 
-	$accordion = new TK_WP_JQUERYUI_ACCORDION();
+	$accordion = new TK_Jqueryui_Accordion();
 	foreach( $sections AS $section ){
 		$accordion->add_section( $section['type'], $section['title'], sp_type_box( $section['type'] ) );
 	}
@@ -201,7 +201,7 @@ function sp_admin_bp_blogs(){
 	
 	apply_filters( 'sp_admin_bp_blogs_sections', $sections );	
 
-	$accordion = new TK_WP_JQUERYUI_ACCORDION();
+	$accordion = new TK_Jqueryui_Accordion();
 	foreach( $sections AS $section ){
 		$accordion->add_section( $section['type'], $section['title'], sp_type_box( $section['type'] ) );
 	}
@@ -223,7 +223,7 @@ function sp_admin_bp_register(){
 	
 	apply_filters( 'sp_admin_bp_registration_sections', $sections );	
 
-	$accordion = new TK_WP_JQUERYUI_ACCORDION();
+	$accordion = new TK_Jqueryui_Accordion();
 	foreach( $sections AS $section ){
 		$accordion->add_section( $section['type'], $section['title'], sp_type_box( $section['type'] ) );
 	}
