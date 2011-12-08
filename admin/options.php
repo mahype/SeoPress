@@ -21,7 +21,7 @@ function seopress_options( $content ){
 	 */		
 	$tabs = new	TK_Jqueryui_Tabs();
 	
-	require_once( 'options_seo.tab.php' );
+	require_once( dirname(__FILE__) . '/options_seo.tab.php' );
 	
 	$tabs->add_tab( 'cap_main_blog', __ ('Seo', 'seopress'), sp_admin_settings_tab() );
 	

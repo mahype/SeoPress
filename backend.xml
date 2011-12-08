@@ -1,0 +1,76 @@
+<?xml version="1.0" ?>
+<wml>
+	<menu title="SeoPress" icon="../wp-content/plugins/seopress/includes/images/icon-seopress-16x16.png" slug="seopress_seo">
+		<page title="Page types" headline="Page types" slug="seopress_seo">
+			<p>Optimize your Wordpress pages.</p>
+			
+			<form name="seopress_seo_settings">
+				<tabs id="seopress_page_types">
+					<tab id="seopress_page_types_wordpress" title="Wordpress">
+						
+						<div class="sp-tab-head">
+							<div class="logo"><img src="../wp-content/plugins/seopress/includes/images/logo-wordpress.png" /></div>
+							<h3>Wordpress Blog</h3>
+							<p>Setup your title and meta tags of your Wordpress blog.</p>
+						</div>
+						
+						<accordion id="seopress_pagetypes_wordpress_accordion">
+							<section title="Home">
+							</section>
+							<section title="Posts">
+							</section>
+							<section title="Pages">
+							</section>
+							<section title="Archive">
+							</section>
+							<section title="Category">
+							</section>
+							<section title="Tags">
+							</section>
+							<section title="Author">
+							</section>
+							<section title="Search result">
+							</section>
+						</accordion>
+						
+					</tab>
+					<tab id="seopress_page_types_buddypress" title="Buddypress">
+						
+					</tab>
+					<tab id="seopress_page_types_plugins" title="Buddypress Plugins">
+						
+					</tab>							
+				</tabs>
+			</form>						
+		</page>
+		<page title="Options" headline="Options" slug="seopress_options_new">
+			<p>Configure global settings for SeoPress.</p>
+			<form name="seopress_options">
+				<tabs id="seopress_options_tabs">
+					<tab id="seopress_options_tabs_seo" title="Seo">
+						
+						<div class="sp-tab-head">
+							<div class="logo"><img src="http://seopress.themekraft.com/wp-content/plugins/seopress/includes/images/logo-wordpress.png" /></div>
+							<h3>Global SEO options</h3>
+							<p>Setup the global settings of the Seo part of the plugin.</p>
+						</div>
+						
+						<h5>Title</h5>
+						<checkbox name="show_pagination" label="Show Pagination" />
+						<textfield name="std_title_legth" label="Title length" />
+						
+						<h5>Meta</h5>
+						<textfield name="std_metadesc_legth" label="Description length" />
+						
+						<h5>Meta boxes in posts and pages</h5>
+						
+						<checkbox name="metabox_post" label="Hide meta boxes in posts" />
+						<checkbox name="metabox_pages" label="Hide meta boxes in pages" />
+						
+						<button name="Save" />
+					</tab>
+				</tabs>
+			</form>
+		</page>
+	</menu>
+</wml>

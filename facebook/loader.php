@@ -1,6 +1,6 @@
 <?php
 
-require_once( 'open-graph.php' );
+require_once( dirname(__FILE__) . '/open-graph.php' );
 
 function sp_fp_add_meta(){
 	if( $_SERVER['HTTP_USER_AGENT'] == 'facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)' ) {			

@@ -28,39 +28,39 @@ $seopress_plugin_url = plugin_dir_url( __FILE__ );
 load_plugin_textdomain( 'seopress', false, dirname( plugin_basename( __FILE__ ) ) . '/lang' );
 
 // Loading libraries
-require_once( 'includes/lib/io.inc.php' );
-require_once( 'includes/lib/wordpress/io.inc.php' );
-// require_once( 'includes/lib/wordpress/wp.inc.php' );
-require_once( 'includes/lib/wordpress/wp_url.inc.php' );
-require_once( 'includes/lib/wordpress/functions.php' );
+require_once( dirname(__FILE__) . '/includes/lib/io.inc.php' );
+require_once( dirname(__FILE__) . '/includes/lib/wordpress/io.inc.php' );
+// require_once( dirname(__FILE__) . '/includes/lib/wordpress/wp.inc.php' );
+require_once( dirname(__FILE__) . '/includes/lib/wordpress/wp_url.inc.php' );
+require_once( dirname(__FILE__) . '/includes/lib/wordpress/functions.php' );
 
 // require_once( 'includes/lib/buddypress/bp.inc.php' );
-require_once( 'includes/lib/buddypress/bp-functions.php' );
+require_once( dirname(__FILE__) . '/includes/lib/buddypress/bp-functions.php' );
 
 // Loading css and js
-require_once( 'includes/css/loader.php' );
+require_once( dirname(__FILE__) . '/includes/css/loader.php' );
 
 // Special tag engine
-require_once( 'special-tags/special-tag-core.php' );
+require_once( dirname(__FILE__) . '/special-tags/special-tag-core.php' );
 
-require_once( 'special-tags/wp/page_types.php' );
-require_once( 'special-tags/wp/sets.php' );
-require_once( 'special-tags/wp/functions.php' );
+require_once( dirname(__FILE__) . '/special-tags/wp/page_types.php' );
+require_once( dirname(__FILE__) . '/special-tags/wp/sets.php' );
+require_once( dirname(__FILE__) . '/special-tags/wp/functions.php' );
 
-require_once( 'special-tags/bp/page_types.php' );
-require_once( 'special-tags/bp/sets.php' );
-require_once( 'special-tags/bp/functions.php' );
+require_once( dirname(__FILE__) . '/special-tags/bp/page_types.php' );
+require_once( dirname(__FILE__) . '/special-tags/bp/sets.php' );
+require_once( dirname(__FILE__) . '/special-tags/bp/functions.php' );
 
 // Admin pages
-require_once( 'admin/sp_admin_core.php' );
-require_once( 'admin/seo.php' );
-require_once( 'admin/options.php' );
-require_once( 'admin/single_metabox.php' );
+require_once( dirname(__FILE__) . '/admin/sp_admin_core.php' );
+require_once( dirname(__FILE__) . '/admin/seo.php' );
+require_once( dirname(__FILE__) . '/admin/options.php' );
+require_once( dirname(__FILE__) . '/admin/single_metabox.php' );
 
-require_once( 'sp-core.php' );
-require_once( 'sp-update.php' );
+require_once( dirname(__FILE__) . '/sp-core.php' );
+require_once( dirname(__FILE__) . '/sp-update.php' );
 
-require_once( 'facebook/loader.php' );
+require_once( dirname(__FILE__) . '/facebook/loader.php' );
 
 function tk_framework_init(){
 	// Registering the form where the data have to be saved
@@ -91,4 +91,3 @@ function test_profiles( $user ){
 }
 add_action( 'personal_options', 'test_profiles', 1 );
 */
-?>

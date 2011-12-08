@@ -127,8 +127,7 @@ class SP_CORE{
 	public function get_seo_data( $key = false ){
 		global $bp;
 		
-		if( is_single() || is_page() ) $meta = $this->get_post_meta();
-		
+		if( ( is_single() || is_page() ) && $bp->current_component=='' ) $meta = $this->get_post_meta();
 		
 		if( $meta == '' ){
 			$template = $this->get_template();
@@ -345,91 +344,14 @@ function sp_admin_menue(){
 	   		}
 		}
 	}
+	
+	$wml = dirname( __FILE__ ) . '/backend.xml' ;
 
 	add_filter( 'tk_admin_page_after_content_seopress_seo', 'seopress_seo', 1 );
 	add_filter( 'tk_admin_page_after_content_seopress_options', 'seopress_options', 1 );
-
-	$icon_url = $seopress_plugin_url . 'includes/images/icon-seopress-16x16.png';
-
-	$wml = '<?xml version="1.0" ?>
-    		<wml>
-				<menu title="SeoPress" icon="' . $icon_url . '" slug="seopress_seo">
-					<page title="Page types" headline="Page types" slug="seopress_seo">
-						<p>Optimize your Wordpress pages.</p>
-						
-						<form name="seopress_seo_settings">
-							<tabs id="seopress_page_types">
-								<tab id="seopress_page_types_wordpress" title="Wordpress">
-									
-									<div class="sp-tab-head">
-										<div class="logo"><img src="http://seopress.themekraft.com/wp-content/plugins/seopress/includes/images/logo-wordpress.png" /></div>
-										<h3>Wordpress Blog</h3>
-										<p>Setup your title and meta tags of your Wordpress blog.</p>
-									</div>
-									
-									<accordion id="seopress_page_types_wordpress_accordion">
-										<section title="Home">
-										</section>
-										<section title="Posts">
-										</section>
-										<section title="Pages">
-										</section>
-										<section title="Archive">
-										</section>
-										<section title="Category">
-										</section>
-										<section title="Tags">
-										</section>
-										<section title="Author">
-										</section>
-										<section title="Search result">
-										</section>
-									</accordion>
-									
-								</tab>
-								<tab id="seopress_page_types_buddypress" title="Buddypress">
-									
-								</tab>
-								<tab id="seopress_page_types_plugins" title="Buddypress Plugins">
-									
-								</tab>							
-							</tabs>
-						</form>						
-					</page>
-					<page title="Options" headline="Options" slug="seopress_options_new">
-						<p>Configure global settings for SeoPress.</p>
-						<form name="seopress_options">
-							<tabs id="seopress_options_tabs">
-								<tab id="seopress_options_tabs_seo" title="Seo">
-									
-									<div class="sp-tab-head">
-										<div class="logo"><img src="http://seopress.themekraft.com/wp-content/plugins/seopress/includes/images/logo-wordpress.png" /></div>
-										<h3>Global SEO options</h3>
-										<p>Setup the global settings of the Seo part of the plugin.</p>
-									</div>
-									
-									<h5>Title</h5>
-									<checkbox name="show_pagination" label="Show Pagination" />
-									<textfield name="std_title_legth" label="Title length" />
-									
-									<h5>Meta</h5>
-									<textfield name="std_metadesc_legth" label="Description length" />
-									
-									<h5>Meta boxes in posts and pages</h5>
-									
-									<checkbox name="metabox_post" label="Hide meta boxes in posts" />
-									<checkbox name="metabox_pages" label="Hide meta boxes in pages" />
-									
-									<button name="Save" />
-								</tab>
-							</tabs>
-						</form>
-					</page>
-				</menu>
-    		</wml>';
 	
-	tk_wml_parse( $wml );
-	tk_wml_create_textfiles( $wml );
+	tk_wml_parse_file( $wml );
+	// tk_wml_create_textfiles_from_wml_file( $wml );
 		
 	// add_menu_page( 'SeoPress Admin' , 'SeoPress' , 'manage_options', 'seopress_seo','seopress_seo', $seopress_plugin_url . 'includes/images/icon-seopress-16x16.png');
 	// add_submenu_page( 'seopress_seo', __( 'SeoPress - Page types', 'seopress'),__( 'Page types', 'seopress' ), 'manage_options', 'seopress_seo', 'seopress_seo' );

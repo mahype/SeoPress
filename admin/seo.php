@@ -22,10 +22,10 @@ function seopress_seo( $content ){
 	 */		
 	$tabs = new	TK_Jqueryui_Tabs();
 	
-	require_once( 'seo_wordpress.tab.php' );
-	require_once( 'seo_wordpressmu.tab.php' );
-	require_once( 'seo_buddypress.tab.php' );
-	require_once( 'seo_buddypress_plugins.tab.php' );
+	require_once( dirname(__FILE__) . '/seo_wordpress.tab.php' );
+	require_once( dirname(__FILE__) . '/seo_wordpressmu.tab.php' );
+	require_once( dirname(__FILE__) . '/seo_buddypress.tab.php' );
+	require_once( dirname(__FILE__) . '/seo_buddypress_plugins.tab.php' );
 	
 	// Wordpress tab
 	$tabs->add_tab( 'cap_main_blog', __ ('Wordpress', 'seopress'), sp_admin_wp_tab() );
