@@ -81,9 +81,9 @@ class SeoPress_Loader{
 
 		self::constants();
 		
-		add_action( 'plugins_loaded', 			array( __CLASS__, 'framework'  ), 0 );
+		add_action( 'plugins_loaded', 	array( __CLASS__, 'framework'  ), 0 );
 		add_action( 'plugins_loaded', 	array( __CLASS__, 'check_requirements' ), 10 );
-		add_action( 'plugins_loaded', 	array( __CLASS__, 'start' 			   ), 12 );
+		add_action( 'plugins_loaded', 	array( __CLASS__, 'start' 			   ), 20 );
 		
 		add_action( 'activated_plugin', array( __CLASS__, 'activate'	       ), 10 );
 	}
@@ -145,12 +145,12 @@ class SeoPress_Loader{
 		require_once SEOPRESS_ABSPATH . 'includes/lib/buddypress/bp-functions.php';
 		
 		// Admin pages
-		require_once SEOPRESS_ABSPATH . 'admin/sp_admin_core.php';
-		require_once SEOPRESS_ABSPATH . 'admin/seo.php';
-		require_once SEOPRESS_ABSPATH . 'admin/options.php';
-		require_once SEOPRESS_ABSPATH . 'admin/single_metabox.php';
+		require_once SEOPRESS_ABSPATH . 'components/admin/sp_admin_core.php';
+		require_once SEOPRESS_ABSPATH . 'components/admin/seo.php';
+		require_once SEOPRESS_ABSPATH . 'components/admin/options.php';
+		require_once SEOPRESS_ABSPATH . 'components/admin/single_metabox.php';
 		
-		require_once SEOPRESS_ABSPATH . 'sp-update.php';
+		require_once SEOPRESS_ABSPATH . 'update.php';
 		
 		// Loading css and js
 		require_once SEOPRESS_ABSPATH . 'includes/css/loader.php';

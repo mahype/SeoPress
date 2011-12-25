@@ -51,8 +51,8 @@ function tk_framework( $args = array()  ){
 	
 	add_action( 'admin_init', 'tk_register_option_groups' ); // should not be here
 	
-	add_action( 'wp_loaded', 'tk_load_framework', 2 );
-	add_action( 'wp_loaded', 'tk_load_jqueryui', 2 );
+	add_action( 'plugins_loaded', 'tk_load_framework', 15 );
+	add_action( 'plugins_loaded', 'tk_load_jqueryui', 15 );
 }
 
 function tk_register_option_groups(){

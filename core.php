@@ -421,7 +421,7 @@ function sp_setup(){
 					  jQuery(document).ready(function($){
 						 imgLoader = new Image(); // preload image
 						 imgLoader.src = tb_pathToImage;
-					     tb_show("SeoPress - by themekraft.com", "' . $seopress_plugin_url . 'sp-setup.php?page=tk_framework?TB_iframe=true&amp;width=482&amp;height=385" );
+					     tb_show("SeoPress - by themekraft.com", "' . $seopress_plugin_url . 'setup.php?page=tk_framework?TB_iframe=true&amp;width=482&amp;height=385" );
 					     // placed right after tb_show call
 					     
 					     // Workaround for getting tabs running
