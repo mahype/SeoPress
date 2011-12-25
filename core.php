@@ -24,6 +24,8 @@ class SP_CORE{
 		$this->seo_settings = get_blog_option( SITE_ID_CURRENT_SITE , 'seopress_seo_settings_values' );
 		$this->options = get_blog_option( SITE_ID_CURRENT_SITE , 'seopress_options_values' );
 		$this->init_special_tags();
+		
+		echo '<br><br><br>Drin';
 							
 		// Initialising data for frontend	
 		if( !is_admin() ){
@@ -335,6 +337,8 @@ function sp_register_post_metabox_form(){
 function sp_admin_menue(){
 	global $blog_id, $seopress_plugin_url;
 	
+	echo '<br><br><br>Daaaaaaaa';
+	
 	if( !current_user_can('level_10') ){ 
 		return false;
 	} else {
@@ -345,7 +349,7 @@ function sp_admin_menue(){
 		}
 	}
 	
-	$wml = dirname( __FILE__ ) . '/backend.xml' ;
+	$wml = dirname( __FILE__ ) . '/admin/backend.xml' ;
 
 	add_filter( 'tk_admin_page_after_content_seopress_seo', 'seopress_seo', 1 );
 	add_filter( 'tk_admin_page_after_content_seopress_options', 'seopress_options', 1 );

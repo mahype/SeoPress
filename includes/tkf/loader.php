@@ -22,7 +22,7 @@ function tk_framework( $args = array()  ){
 		'text_domain' => '',
 		'text_domain_path' => '/lang'
 	);
-	
+
 	$args = wp_parse_args($args, $defaults);
 	extract( $args , EXTR_SKIP );
 	
@@ -49,7 +49,7 @@ function tk_framework( $args = array()  ){
 		}
 	}
 	
-	add_action( 'admin_init', 'tk_register_option_groups' );
+	add_action( 'admin_init', 'tk_register_option_groups' ); // should not be here
 	
 	add_action( 'wp_loaded', 'tk_load_framework', 2 );
 	add_action( 'wp_loaded', 'tk_load_jqueryui', 2 );
