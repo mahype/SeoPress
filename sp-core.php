@@ -359,10 +359,7 @@ function sp_admin_menue(){
 	// add_submenu_page( 'seopress_seo', __( 'Test page', 'seopress'),__( 'Test page', 'seopress' ), 'manage_options', 'seopress_test', 'test_facebook' );
 }
 
-function seopress_init(){
-	global $seopress;
-	$seopress = new SP_CORE();
-}
+
 
 function sp_get_pro_tab( $tabs ){
 	global $seopress_plugin_url;
