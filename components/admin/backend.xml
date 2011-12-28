@@ -1,12 +1,12 @@
 <?xml version="1.0" ?>
 <wml>
-	<menu title="SeoPress" icon="../wp-content/plugins/seopress/includes/images/icon-seopress-16x16.png" slug="seopress_seo">
-		<page title="Page types" headline="Page types" slug="seopress_seo">
+	<menu title="SeoPress" icon="../wp-content/plugins/seopress/includes/images/icon-seopress-16x16.png" slug="sp_seo">
+		<page title="Page types" headline="Page types" slug="sp_seo" icon="../wp-admin/images/icons32.png">
 			<p>Optimize your Wordpress pages.</p>
 			
-			<form name="seopress_seo_settings">
-				<tabs id="seopress_page_types">
-					<tab id="seopress_page_types_wordpress" title="Wordpress">
+			<form name="sp_seo_settings">
+				<tabs id="sp_page_types">
+					<tab id="sp_page_types_wordpress" title="Wordpress">
 						
 						<div class="sp-tab-head">
 							<div class="logo"><img src="../wp-content/plugins/seopress/includes/images/logo-wordpress.png" /></div>
@@ -14,40 +14,155 @@
 							<p>Setup your title and meta tags of your Wordpress blog.</p>
 						</div>
 						
-						<accordion id="seopress_pagetypes_wordpress_accordion">
-							<section title="Home">
+						<accordion id="sp_pagetypes_wordpress_accordion">
+							<section title="Home" id="wp-home">
 							</section>
-							<section title="Posts">
+							<section title="Posts" id="wp-posts">
 							</section>
-							<section title="Pages">
+							<section title="Pages" id="wp-pages">
 							</section>
-							<section title="Archive">
+							<section title="Archive" id="wp-archive">
 							</section>
-							<section title="Category">
+							<section title="Category" id="wp-category">
 							</section>
-							<section title="Tags">
+							<section title="Tags" id="wp-tags">
 							</section>
-							<section title="Author">
+							<section title="Author" id="wp-author">
 							</section>
-							<section title="Search result">
+							<section title="Search result" id="wp-search">
 							</section>
 						</accordion>
 						
-					</tab>
-					<tab id="seopress_page_types_buddypress" title="Buddypress">
+						<button name="Save" />
 						
 					</tab>
-					<tab id="seopress_page_types_plugins" title="Buddypress Plugins">
+					
+					<tab id="sp_pagetypes_network" title="Wordpress Network">
+						<div class="sp-tab-head">
+							<div class="logo"><img src="../wp-content/plugins/seopress/includes/images/logo-wordpress.png" /></div>
+							<h3>Wordpress Network Blogs</h3>
+							<p>Setup your title and meta tags of your Wordpress main blog.</p>
+						</div>
+					
+						<accordion id="sp_pagetypes_network_accordion">
+							<section title="Home" id="network-home">
+							</section>
+							<section title="Posts" id="network-posts">
+							</section>
+							<section title="Pages" id="network-pages">
+							</section>
+							<section title="Archive" id="network-archive">
+							</section>
+							<section title="Category" id="network-category">
+							</section>
+							<section title="Tags" id="network-tags">
+							</section>
+							<section title="Author" id="network-author">
+							</section>
+							<section title="Search result" id="network-search">
+							</section>
+						</accordion>
 						
-					</tab>							
+						<button name="Save" />
+						
+					</tab>
+					
+					<tab id="sp_pagetypes_buddypress" title="Buddypress">
+						
+						<div class="sp-tab-head">
+							<div class="logo"><img src="../wp-content/plugins/seopress/includes/images/logo-buddypress.png" /></div>
+							<h3>Buddypress</h3>
+							<p>Setup your title and meta tags of the buddypress pages.</p>
+						</div>
+						
+						<h3>Setup Buddypress pages</h3>
+						
+						<tabs>
+							<tab id="seopress_pagetypes_bp_members" title="Members">
+								<accordion id="seopress_pagetypes_bp_members">
+									<section title="Members Directory" id="sp_pagetypes_buddypress_members-membersdirectory">
+										
+									</section>
+								</accordion>
+							</tab>
+							<tab id="sp_pagetypes_bp_profiles" title="Profiles">
+								<accordion id="sp_pagetypes_bp_profiles">
+									<section title="Profile" id="sp_pagetypes_bp_profiles_profile">
+										
+									</section>
+									<section title="Profile Blogs" id="sp_pagetypes_bp_profiles_profileblogs">
+										
+									</section>
+									<section title="Profile Groups" id="sp_pagetypes_bp_profiles_profilegroups">
+										
+									</section>
+								</accordion>
+							</tab>
+							<tab id="sp_pagetypes_bp_groups" title="Groups">
+								<accordion id="sp_pagetypes_bp_groups">
+									<section title="Group Directory" id="sp_pagetypes_bp_groups_groupdirectory">
+										
+									</section>
+									<section title="Group Home" id="sp_pagetypes_bp_profiles_grouphome">
+										
+									</section>
+									<section title="Group Forum" id="sp_pagetypes_bp_profiles_groupforum">
+										
+									</section>
+									<section title="Group Forum Topic" id="sp_pagetypes_bp_profiles_groupforumtopic">
+										
+									</section>
+									<section title="Group Members" id="sp_pagetypes_bp_profiles_groupmembers">
+										
+									</section>
+								</accordion>
+							</tab>
+							<tab id="sp_pagetypes_bp_forums" title="Forums">
+								<accordion id="sp_pagetypes_bp_forums">
+									<section title="Forums Directory" id="sp_pagetypes_bp_groups_forumsdirectory">
+										
+									</section>
+								</accordion>
+							</tab>
+							<tab id="sp_pagetypes_bp_blogs" title="Blogs">
+								<accordion id="sp_pagetypes_bp_blogs">
+									<section title="Blogs Directory" id="sp_pagetypes_bp_blogs_blogsdirectory">
+										
+									</section>
+								</accordion>
+							</tab>
+							<tab id="sp_pagetypes_bp_registration" title="Registration">
+								<accordion id="sp_pagetypes_bp_registration">
+									<section title="Registration" id="sp_pagetypes_bp_registration_registration">
+										
+									</section>
+								</accordion>
+							</tab>
+						</tabs>
+						
+						<button name="Save" />
+						
+					</tab>
+					
+					<tab id="sp_page_types_plugins" title="Buddypress Plugins">
+						<div class="sp-tab-head">
+							<div class="logo"><img src="../wp-content/plugins/seopress/includes/images/logo-buddypress.png" /></div>
+							<h3>Buddypress plugins</h3>
+							<p>Setup your title and meta tags of the buddypress plugins you have installed.</p>
+						</div>
+						
+						<button name="Save" />
+						
+					</tab>
+										
 				</tabs>
 			</form>						
 		</page>
-		<page title="Options" headline="Options" slug="seopress_options_new">
+		<page title="Options" headline="Options" slug="sp_options_new">
 			<p>Configure global settings for SeoPress.</p>
-			<form name="seopress_options">
-				<tabs id="seopress_options_tabs">
-					<tab id="seopress_options_tabs_seo" title="Seo">
+			<form name="sp_options">
+				<tabs id="sp_options_tabs">
+					<tab id="sp_options_tabs_seo" title="Seo">
 						
 						<div class="sp-tab-head">
 							<div class="logo"><img src="http://seopress.themekraft.com/wp-content/plugins/seopress/includes/images/logo-wordpress.png" /></div>
