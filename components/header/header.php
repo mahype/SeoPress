@@ -6,7 +6,7 @@
 * @copyright Themekraft.com
 * @include   Funktion:_include_
 */
-class SP_CORE{
+class SP_Head{
 	
 	var $settings;
 	var $page_type;
@@ -25,8 +25,6 @@ class SP_CORE{
 		$this->options = get_blog_option( SITE_ID_CURRENT_SITE , 'seopress_options_values' );
 		$this->init_special_tags();
 		
-		echo '<br><br><br>Drin';
-							
 		// Initialising data for frontend	
 		if( !is_admin() ){
 			
@@ -311,139 +309,4 @@ class SP_CORE{
 			echo '<div id="seopress-privacy-warning" class="error"><p>' . sprintf( __('Your blog is not public. Searchengines will be blocked. You can change this in your <a href="%s">privacy settings</a>.', 'seopress' ), $privacy_url ) . '</p></div>';
 		}
 	}
-	
-	public function init_admin(){
-		if( 'seopress_seo' == $_GET['page'] || 'seopress_options' == $_GET['page'] || '' != $_GET['post'] || 'post-new.php' == basename( $_SERVER['REQUEST_URI'] ) ) {				
-			$tk_jquery_ui = new TK_Jqueryui();
-			$tk_jquery_ui->load_jqueryui( array ( 'jquery-ui-tabs', 'jquery-ui-accordion', 'jquery-ui-autocomplete' ) );
-			add_thickbox();
-		}
-	}
-	
-	public function install(){
-	}
 }
-
-function sp_register_seo_settings_form(){
-	tk_register_wp_option_group( 'seopress_seo_settings' );
-}
-function sp_register_options_form(){
-	tk_register_wp_option_group( 'seopress_options' );
-}
-function sp_register_post_metabox_form(){
-	tk_register_wp_option_group( 'sp_post_metabox' );
-}
-
-function sp_admin_menue(){
-	global $blog_id, $seopress_plugin_url;
-	
-	echo '<br><br><br>Daaaaaaaa';
-	
-	if( !current_user_can('level_10') ){ 
-		return false;
-	} else {
-		if( defined('SITE_ID_CURRENT_SITE') ){	
-	  		if( $blog_id != SITE_ID_CURRENT_SITE ){
-	    		return false;
-	   		}
-		}
-	}
-	
-	$wml = dirname( __FILE__ ) . '/admin/backend.xml' ;
-
-	add_filter( 'tk_admin_page_after_content_seopress_seo', 'seopress_seo', 1 );
-	add_filter( 'tk_admin_page_after_content_seopress_options', 'seopress_options', 1 );
-	
-	tk_wml_parse_file( $wml );
-	// tk_wml_create_textfiles_from_wml_file( $wml );
-		
-	// add_menu_page( 'SeoPress Admin' , 'SeoPress' , 'manage_options', 'seopress_seo','seopress_seo', $seopress_plugin_url . 'includes/images/icon-seopress-16x16.png');
-	// add_submenu_page( 'seopress_seo', __( 'SeoPress - Page types', 'seopress'),__( 'Page types', 'seopress' ), 'manage_options', 'seopress_seo', 'seopress_seo' );
-	// add_submenu_page( 'seopress_seo', __( 'SeoPress - Options', 'seopress'),__( 'Options', 'seopress' ), 'manage_options', 'seopress_options', 'seopress_options' );
-	// add_submenu_page( 'seopress_seo', __( 'Test page', 'seopress'),__( 'Test page', 'seopress' ), 'manage_options', 'seopress_test', 'test_facebook' );
-}
-
-
-
-function sp_get_pro_tab( $tabs ){
-	global $seopress_plugin_url;
-	$html = '<div id="tab-head">
-	      <div class="sfb-entry">
-	      	  <div style="width:250px; padding:0 40px 100px 0; float:left;"><a href="http://themekraft.com/plugin/seopress-pro/" target="_blank"><img src="' . $seopress_plugin_url . 'includes/images/seopress-pro-package.jpg" border="0" /></a></div>
-		      <h2>' . __('Pro Version now available!', 'seopress') . '</h2><br>
-				<b>' . __('Get SeoPress Pro Version now, and benefit from more functionality, support and a clean UI.', 'seopress') . '</b><br>
-				<br>
-				<a href="http://themekraft.com/plugin/seopress-pro/" target="_blank">' . __('Upgrade now', 'seopress') . '</a>					
-				<br><br>
-				<h3>' . __('Pro Features', 'seopress') . '</h3>
-				<ol>
-					<li>' . __('Keyword generator', 'seopress') . '</li>
-					<li>' . __('Text counter for meta title and description', 'seopress') . '</li>
-					<li>' . __('No branding: the Pro Version comes without the "Get Pro" tabs.', 'seopress') . '</li>
-					<li>' . __('Full support and help in the SeoPress group and forum.', 'seopress') . '</li>
-				</ol>
-				<br>
-				<h3>' . __('Pro Roadmap', 'seopress') . '</h3>
-				<ol>
-					<li>' . __( 'Sitemap generator (including Buddypress urls)', 'seopress') . '</li>
-					<li>' . __( 'Deeplink generator', 'seopress') . '</li>
-					<li>' . __( 'Pages and posts optimizer', 'seopress') . '</li>
-					<li>' . __( 'Searchengine preview for pages and posts', 'seopress') . '</li>
-					<li>' . __( 'Google Pagerank checker', 'seopress') . '</li>
-					<li>' . __( 'Canonical url support', 'seopress') . '</li>
-					<li>' . __( 'Xprofile special tags for buddypress', 'seopress') . '</li>
-				</ol>
-				<br>
-				<a href="http://themekraft.com/plugin/seopress-pro/" target="_blank">' . __('Upgrade now', 'seopress') . '</a>	
-			</div>
-	    </div>';
-	
-	$tabs->add_tab( 'cap_get_pro', __ ('Get Pro version!', 'seopress'), $html );	
-}
-
-function sp_reset_data(){
-}
-
-function seopress_activate(){
-	$redirect_url = get_bloginfo( 'siteurl' ) . 'wp-admin/admin.php?page=seopress_seo';
-	wp_redirect( $redirect_url ); 	
-}
-
-function sp_setup(){
-	global $seopress_plugin_url;
-	
-	$sp_setup = get_option( 'seopress_setup' );
-	
-	if( (bool) $sp_setup['activation_run'] == false ){
-		if( true == (bool) $_GET[ 'sp_activate' ] ){
-		
-			echo '<script type="text/javascript">
-					  jQuery(document).ready(function($){
-						 imgLoader = new Image(); // preload image
-						 imgLoader.src = tb_pathToImage;
-					     tb_show("SeoPress - by themekraft.com", "' . $seopress_plugin_url . 'setup.php?page=tk_framework?TB_iframe=true&amp;width=482&amp;height=385" );
-					     // placed right after tb_show call
-					     
-					     // Workaround for getting tabs running
-					     
-					     // See here: http://themeforest.net/forums/thread/wordpress-32-admin-area-thickbox-triggering-unload-event/46916?page=1#434388
-					     // http://wordpress.org/support/topic/wp-32-thickbox-jquery-ui-tabs-conflict
-					     
-						 $("#TB_window,#TB_overlay,#TB_HideSelect").one("unload",killTheDamnUnloadEvent);
-						
-						 function killTheDamnUnloadEvent(e) {
-						    // you
-						    e.stopPropagation();
-						    // must
-						    e.stopImmediatePropagation();
-						    // DIE!
-						    return false;
-						 }
-					  });
-				  	</script>';
-		}
-		update_option( 'seopress_setup',  array( 'activation_run' => true ) );
-	}
-}
-
-?>

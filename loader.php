@@ -81,11 +81,15 @@ class SeoPress_Loader{
 
 		self::constants();
 		
-		add_action( 'plugins_loaded', 	array( __CLASS__, 'framework'  ), 0 );
-		add_action( 'plugins_loaded', 	array( __CLASS__, 'check_requirements' ), 10 );
-		add_action( 'plugins_loaded', 	array( __CLASS__, 'start' 			   ), 20 );
+		add_action( 'plugins_loaded', 	array( __CLASS__, 'framework'  			) 	, 0 );
+
+		add_action( 'init', 			array( __CLASS__, 'check_requirements' 	)	, 10 );
+		add_action( 'init', 			array( __CLASS__, 'start' 			   	) 	, 10 );
+
+		add_action( 'admin_menu', 		array( __CLASS__, 'init_admin' 			) 	, 10 );
 		
-		add_action( 'activated_plugin', array( __CLASS__, 'activate'	       ), 10 );
+		add_action( 'admin_head', 		array( __CLASS__, 'activation_script' 	) 	, 10 );
+		add_action( 'activated_plugin', array( __CLASS__, 'activate'			)	, 10 );		
 	}
 		
 	/**
@@ -115,9 +119,35 @@ class SeoPress_Loader{
 	 */
 	public function framework(){
 		require_once SEOPRESS_ABSPATH . 'includes/tkf/loader.php';
-
-		$args['text_domain'] = 'seopress';
+		
+		// $args['text_domain'] = 'seopress';
 		tk_framework( $args );
+	}
+
+	public function init_admin(){
+		
+		if( !current_user_can('level_10') ){ 
+			return false;
+		} else {
+			if( defined('SITE_ID_CURRENT_SITE') ){	
+		  		if( $blog_id != SITE_ID_CURRENT_SITE ){
+		    		return false;
+		   		}
+			}
+		}
+		
+		$wml = SEOPRESS_ABSPATH . 'components/admin/backend.xml' ;
+		tk_wml_parse_file( $wml );
+		
+		tk_register_wp_option_group( 'seopress_seo_settings' );
+		tk_register_wp_option_group( 'seopress_options' );
+		tk_register_wp_option_group( 'sp_post_metabox' );
+		
+		add_thickbox();
+	}
+	
+	public function set_header(){
+		
 	}
 	
 	/**
@@ -156,6 +186,8 @@ class SeoPress_Loader{
 		require_once SEOPRESS_ABSPATH . 'includes/css/loader.php';
 		
 		// Components - Special tag engine
+		require_once SEOPRESS_ABSPATH . 'components/header/header.php';
+		
 		require_once SEOPRESS_ABSPATH . 'components/special-tags/special-tag-core.php';
 		require_once SEOPRESS_ABSPATH . 'components/special-tags/wp/page_types.php';
 		require_once SEOPRESS_ABSPATH . 'components/special-tags/wp/sets.php';
@@ -168,10 +200,43 @@ class SeoPress_Loader{
 		// Components - Facebook
 		require_once SEOPRESS_ABSPATH . 'components/facebook/loader.php';
 		
-		require_once SEOPRESS_ABSPATH . 'core.php';
+		// $seopress = new SP_CORE();
 		
-		$seopress = new SP_CORE();
+	}
+
+	public function activation_script(){
+		$sp_setup = get_option( 'seopress_setup' );
 		
+		if( (bool) $sp_setup['activation_run'] == false ){
+			if( true == (bool) $_GET[ 'sp_activate' ] ){
+			
+				echo '<script type="text/javascript">
+						  jQuery(document).ready(function($){
+							 imgLoader = new Image(); // preload image
+							 imgLoader.src = tb_pathToImage;
+						     tb_show("SeoPress - by themekraft.com", "' . SEOPRESS_URLPATH . 'setup.php?page=tk_framework?TB_iframe=true&amp;width=482&amp;height=385" );
+						     // placed right after tb_show call
+						     
+						     // Workaround for getting tabs running
+						     
+						     // See here: http://themeforest.net/forums/thread/wordpress-32-admin-area-thickbox-triggering-unload-event/46916?page=1#434388
+						     // http://wordpress.org/support/topic/wp-32-thickbox-jquery-ui-tabs-conflict
+						     
+							 $("#TB_window,#TB_overlay,#TB_HideSelect").one("unload",killTheDamnUnloadEvent);
+							
+							 function killTheDamnUnloadEvent(e) {
+							    // you
+							    e.stopPropagation();
+							    // must
+							    e.stopImmediatePropagation();
+							    // DIE!
+							    return false;
+							 }
+						  });
+					  	</script>';
+			}
+			update_option( 'seopress_setup',  array( 'activation_run' => true ) );
+		}
 	}
 	
 	/**
