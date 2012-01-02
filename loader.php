@@ -120,7 +120,10 @@ class SeoPress_Loader{
 	public function framework(){
 		require_once SEOPRESS_ABSPATH . 'includes/tkf/loader.php';
 		
-		// $args['text_domain'] = 'seopress';
+		$args['jqueryui_components'] = array( 'jquery-ui-tabs', 'jquery-ui-accordion', 'jquery-ui-autocomplete' );
+		$args['text_domain'] = 'seopress';
+		$args['forms'] = array( 'sp_seo_settings', 'sp_options' );
+		
 		tk_framework( $args );
 	}
 
@@ -139,8 +142,6 @@ class SeoPress_Loader{
 		$wml = SEOPRESS_ABSPATH . 'components/admin/backend.xml' ;
 		tk_wml_parse_file( $wml );
 		
-		tk_register_wp_option_group( 'seopress_seo_settings' );
-		tk_register_wp_option_group( 'seopress_options' );
 		tk_register_wp_option_group( 'sp_post_metabox' );
 		
 		add_thickbox();

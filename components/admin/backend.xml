@@ -14,22 +14,134 @@
 							<p>Setup your title and meta tags of your Wordpress blog.</p>
 						</div>
 						
-						<accordion id="sp_pagetypes_wordpress_accordion">
-							<section title="Home" id="wp-home">
+						<accordion id="sp_pagetypes_wordpress">
+							<section title="Home" id="wp_home">
+								
+								<autocomplete name="wp-home-title" label="Title">
+									<value>%%site_name%%</value>
+									<value>%%site_description%%</value>
+								</autocomplete>
+								
+								<autocomplete name="wp-home-description" label="Description">
+									<value>%%site_name%%</value>
+									<value>%%site_description%%</value>
+								</autocomplete>
+								
+								<checkbox name="wp-home-noindex" label="Ban searchengines" />
+								
 							</section>
-							<section title="Posts" id="wp-posts">
+							<section title="Posts" id="wp_posts">
+								
+								<autocomplete name="wp-post-title" label="Title">
+									<value>%%post_title%%</value>
+									<value>%%post_content%%</value>
+									<value>%%post_excerpt%%</value>
+									<value>%%post_auto_excerpt%%</value>
+									<value>%%post_categories%%</value>
+									<value>%%post_tags%%</value>
+									<value>%%post_author%%</value>
+								</autocomplete>
+								
+								<autocomplete name="wp-post-description" label="Description">
+									<value>%%post_title%%</value>
+									<value>%%post_content%%</value>
+									<value>%%post_excerpt%%</value>
+									<value>%%post_auto_excerpt%%</value>
+									<value>%%post_categories%%</value>
+									<value>%%post_tags%%</value>
+									<value>%%post_author%%</value>
+								</autocomplete>
+								
+								<checkbox name="wp-post-noindex" label="Ban searchengines" />
+								
 							</section>
-							<section title="Pages" id="wp-pages">
+							<section title="Pages" id="wp_pages">
+								
+								<autocomplete name="wp-page-title" label="Title">
+									<value>%%page_title%%</value>
+									<value>%%page_content%%</value>
+									<value>%%page_auto_excerpt%%</value>
+									<value>%%page_author%%</value>
+								</autocomplete>
+								
+								<autocomplete name="wp-page-description" label="Description">
+									<value>%%page_title%%</value>
+									<value>%%page_content%%</value>
+									<value>%%page_auto_excerpt%%</value>
+									<value>%%page_author%%</value>
+								</autocomplete>
+								
+								<checkbox name="wp-page-noindex" label="Ban searchengines" />
+
 							</section>
-							<section title="Archive" id="wp-archive">
+							<section title="Archive" id="wp_archive">
+								
+								<autocomplete name="wp-archive-title" label="Title">
+									<value>%%archive_date%%</value>
+								</autocomplete>
+								
+								<autocomplete name="wp-archive-description" label="Description">
+									<value>%%archive_date%%</value>
+								</autocomplete>
+								
+								<checkbox name="wp-archive-noindex" label="Ban searchengines" />
+								
 							</section>
-							<section title="Category" id="wp-category">
+							<section title="Category" id="wp_category">
+								
+								<autocomplete name="wp-category-title" label="Title">
+									<value>%%category%%</value>
+									<value>%%category_description%%</value>
+								</autocomplete>
+								
+								<autocomplete name="wp-category-description" label="Description">
+									<value>%%category%%</value>
+									<value>%%category_description%%</value>
+								</autocomplete>
+								
+								<checkbox name="wp-category-noindex" label="Ban searchengines" />
+								
 							</section>
-							<section title="Tags" id="wp-tags">
+							<section title="Tags" id="wp-tag">
+								
+								<autocomplete name="wp-tag-title" label="Title">
+									<value>%%tag%%</value>
+									<value>%%tag_description%%</value>
+								</autocomplete>
+								
+								<autocomplete name="wp-tag-description" label="Description">
+									<value>%%tag%%</value>
+									<value>%%tag_description%%</value>
+								</autocomplete>
+								
+								<checkbox name="wp-tag-noindex" label="Ban searchengines" />
+								
 							</section>
-							<section title="Author" id="wp-author">
+							<section title="Author" id="wp_author">
+								
+								<autocomplete name="wp-author-title" label="Title">
+									<value>%%author%%</value>
+								</autocomplete>
+								
+								<autocomplete name="wp-author-description" label="Description">
+									<value>%%author%%</value>
+								</autocomplete>
+								
+								<checkbox name="wp-author-noindex" label="Ban searchengines" />
+								
 							</section>
-							<section title="Search result" id="wp-search">
+							<section title="Search result" id="wp_search">
+								
+								<autocomplete name="wp-search-title" label="Title">
+									<value>%%search_phrase%%</value>
+								</autocomplete>
+								
+								<autocomplete name="wp-search-description" label="Description">
+									<value>%%search_phrase%%</value>
+								</autocomplete>
+								
+								<checkbox name="wp-search-noindex" label="Ban searchengines" />
+								
 							</section>
 						</accordion>
 						
@@ -44,22 +156,134 @@
 							<p>Setup your title and meta tags of your Wordpress main blog.</p>
 						</div>
 					
-						<accordion id="sp_pagetypes_network_accordion">
-							<section title="Home" id="network-home">
+						<accordion id="sp_pagetypes_network">
+							<section title="Home" id="mu_home">
+								
+								<autocomplete name="mu-home-title" label="Title">
+									<value>%%site_name%%</value>
+									<value>%%site_description%%</value>
+								</autocomplete>
+								
+								<autocomplete name="mu-home-description" label="Description">
+									<value>%%site_name%%</value>
+									<value>%%site_description%%</value>
+								</autocomplete>
+								
+								<checkbox name="mu-home-noindex" label="Ban searchengines" />
+								
 							</section>
-							<section title="Posts" id="network-posts">
+							<section title="Posts" id="mu_posts">
+								
+								<autocomplete name="mu-post-title" label="Title">
+									<value>%%post_title%%</value>
+									<value>%%post_content%%</value>
+									<value>%%post_excerpt%%</value>
+									<value>%%post_auto_excerpt%%</value>
+									<value>%%post_categories%%</value>
+									<value>%%post_tags%%</value>
+									<value>%%post_author%%</value>
+								</autocomplete>
+								
+								<autocomplete name="mu-post-description" label="Description">
+									<value>%%post_title%%</value>
+									<value>%%post_content%%</value>
+									<value>%%post_excerpt%%</value>
+									<value>%%post_auto_excerpt%%</value>
+									<value>%%post_categories%%</value>
+									<value>%%post_tags%%</value>
+									<value>%%post_author%%</value>
+								</autocomplete>
+								
+								<checkbox name="mu-post-noindex" label="Ban searchengines" />
+								
 							</section>
-							<section title="Pages" id="network-pages">
+							<section title="Pages" id="mu_pages">
+								
+								<autocomplete name="mu-page-title" label="Title">
+									<value>%%page_title%%</value>
+									<value>%%page_content%%</value>
+									<value>%%page_auto_excerpt%%</value>
+									<value>%%page_author%%</value>
+								</autocomplete>
+								
+								<autocomplete name="mu-page-description" label="Description">
+									<value>%%page_title%%</value>
+									<value>%%page_content%%</value>
+									<value>%%page_auto_excerpt%%</value>
+									<value>%%page_author%%</value>
+								</autocomplete>
+								
+								<checkbox name="mu-page-noindex" label="Ban searchengines" />
+
 							</section>
-							<section title="Archive" id="network-archive">
+							<section title="Archive" id="mu_archive">
+								
+								<autocomplete name="mu-archive-title" label="Title">
+									<value>%%archive_date%%</value>
+								</autocomplete>
+								
+								<autocomplete name="mu-archive-description" label="Description">
+									<value>%%archive_date%%</value>
+								</autocomplete>
+								
+								<checkbox name="mu-archive-noindex" label="Ban searchengines" />
+								
 							</section>
-							<section title="Category" id="network-category">
+							<section title="Category" id="mu_category">
+								
+								<autocomplete name="mu-category-title" label="Title">
+									<value>%%category%%</value>
+									<value>%%category_description%%</value>
+								</autocomplete>
+								
+								<autocomplete name="mu-category-description" label="Description">
+									<value>%%category%%</value>
+									<value>%%category_description%%</value>
+								</autocomplete>
+								
+								<checkbox name="mu-category-noindex" label="Ban searchengines" />
+								
 							</section>
-							<section title="Tags" id="network-tags">
+							<section title="Tags" id="mu-tag">
+								
+								<autocomplete name="mu-tag-title" label="Title">
+									<value>%%tag%%</value>
+									<value>%%tag_description%%</value>
+								</autocomplete>
+								
+								<autocomplete name="mu-tag-description" label="Description">
+									<value>%%tag%%</value>
+									<value>%%tag_description%%</value>
+								</autocomplete>
+								
+								<checkbox name="mu-tag-noindex" label="Ban searchengines" />
+								
 							</section>
-							<section title="Author" id="network-author">
+							<section title="Author" id="mu_author">
+								
+								<autocomplete name="mu-author-title" label="Title">
+									<value>%%author%%</value>
+								</autocomplete>
+								
+								<autocomplete name="mu-author-description" label="Description">
+									<value>%%author%%</value>
+								</autocomplete>
+								
+								<checkbox name="mu-author-noindex" label="Ban searchengines" />
+								
 							</section>
-							<section title="Search result" id="network-search">
+							<section title="Search result" id="mu_search">
+								
+								<autocomplete name="mu-search-title" label="Title">
+									<value>%%search_phrase%%</value>
+								</autocomplete>
+								
+								<autocomplete name="mu-search-description" label="Description">
+									<value>%%search_phrase%%</value>
+								</autocomplete>
+								
+								<checkbox name="mu-search-noindex" label="Ban searchengines" />
+								
 							</section>
 						</accordion>
 						
@@ -79,21 +303,86 @@
 						
 						<tabs>
 							<tab id="seopress_pagetypes_bp_members" title="Members">
+								
 								<accordion id="seopress_pagetypes_bp_members">
 									<section title="Members Directory" id="sp_pagetypes_buddypress_members-membersdirectory">
 										
+										<autocomplete name="bp-component-members-title" label="Title">
+											<value>%%component_name%%</value>
+											<value>%%site_name%%</value>
+											<value>%%site_description%%</value>
+										</autocomplete>
+										
+										<autocomplete name="bp-component-members-description" label="Description">
+											<value>%%component_name%%</value>
+											<value>%%site_name%%</value>
+											<value>%%site_description%%</value>
+										</autocomplete>
+										
+										<checkbox name="bp-component-members-noindex" label="Ban searchengines" />
+										
 									</section>
 								</accordion>
+								
 							</tab>
 							<tab id="sp_pagetypes_bp_profiles" title="Profiles">
+								
 								<accordion id="sp_pagetypes_bp_profiles">
 									<section title="Profile" id="sp_pagetypes_bp_profiles_profile">
+										
+										<autocomplete name="bp-component-profile-public-title" label="Title">
+											<value>%%user_name%%</value>
+											<value>%%component_name%%</value>
+											<value>%%site_name%%</value>
+											<value>%%site_description%%</value>
+										</autocomplete>
+										
+										<autocomplete name="bp-component-profile-public-description" label="Description">
+											<value>%%user_name%%</value>
+											<value>%%component_name%%</value>
+											<value>%%site_name%%</value>
+											<value>%%site_description%%</value>
+										</autocomplete>
+										
+										<checkbox name="bp-component-profile-public-noindex" label="Ban searchengines" />
 										
 									</section>
 									<section title="Profile Blogs" id="sp_pagetypes_bp_profiles_profileblogs">
 										
+										<autocomplete name="bp-component-blogs-my-blogs-title" label="Title">
+											<value>%%user_name%%</value>
+											<value>%%component_name%%</value>
+											<value>%%site_name%%</value>
+											<value>%%site_description%%</value>
+										</autocomplete>
+										
+										<autocomplete name="bp-component-blogs-my-blogs-description" label="Description">
+											<value>%%user_name%%</value>
+											<value>%%component_name%%</value>
+											<value>%%site_name%%</value>
+											<value>%%site_description%%</value>
+										</autocomplete>
+										
+										<checkbox name="bp-component-blogs-my-blogs-noindex" label="Ban searchengines" />
+										
 									</section>
 									<section title="Profile Groups" id="sp_pagetypes_bp_profiles_profilegroups">
+										
+										<autocomplete name="bp-component-groups-my-groups-title" label="Title">
+											<value>%%user_name%%</value>
+											<value>%%component_name%%</value>
+											<value>%%site_name%%</value>
+											<value>%%site_description%%</value>
+										</autocomplete>
+										
+										<autocomplete name="bp-component-groups-my-groups-description" label="Description">
+											<value>%%user_name%%</value>
+											<value>%%component_name%%</value>
+											<value>%%site_name%%</value>
+											<value>%%site_description%%</value>
+										</autocomplete>
+										
+										<checkbox name="bp-component-groups-my-groups-noindex" label="Ban searchengines" />
 										
 									</section>
 								</accordion>
@@ -102,17 +391,110 @@
 								<accordion id="sp_pagetypes_bp_groups">
 									<section title="Group Directory" id="sp_pagetypes_bp_groups_groupdirectory">
 										
+										<autocomplete name="bp-component-groups-title" label="Title">
+											<value>%%component_name%%</value>
+											<value>%%site_name%%</value>
+											<value>%%site_description%%</value>
+										</autocomplete>
+										
+										<autocomplete name="bp-component-groups-description" label="Description">
+											<value>%%component_name%%</value>
+											<value>%%site_name%%</value>
+											<value>%%site_description%%</value>
+										</autocomplete>
+										
+										<checkbox name="bp-component-groups-noindex" label="Ban searchengines" />
+										
 									</section>
+									
 									<section title="Group Home" id="sp_pagetypes_bp_profiles_grouphome">
+										
+										<autocomplete name="bp-component-groups-home-title" label="Title">
+											<value>%%group%%</value>
+											<value>%%group_description%%</value>
+											<value>%%component_name%%</value>
+											<value>%%site_name%%</value>
+											<value>%%site_description%%</value>
+										</autocomplete>
+										
+										<autocomplete name="bp-component-groups-home-description" label="Description">
+											<value>%%group%%</value>
+											<value>%%group_description%%</value>
+											<value>%%component_name%%</value>
+											<value>%%site_name%%</value>
+											<value>%%site_description%%</value>
+										</autocomplete>
+										
+										<checkbox name="bp-component-groups-home-noindex" label="Ban searchengines" />
 										
 									</section>
 									<section title="Group Forum" id="sp_pagetypes_bp_profiles_groupforum">
 										
+										<autocomplete name="bp-component-groups-forum-title" label="Title">
+											<value>%%group%%</value>
+											<value>%%group_description%%</value>
+											<value>%%component_name%%</value>
+											<value>%%site_name%%</value>
+											<value>%%site_description%%</value>
+										</autocomplete>
+										
+										<autocomplete name="bp-component-groups-forum-description" label="Description">
+											<value>%%group%%</value>
+											<value>%%group_description%%</value>
+											<value>%%component_name%%</value>
+											<value>%%site_name%%</value>
+											<value>%%site_description%%</value>
+										</autocomplete>
+										
+										<checkbox name="bp-component-groups-forum-noindex" label="Ban searchengines" />
+										
 									</section>
 									<section title="Group Forum Topic" id="sp_pagetypes_bp_profiles_groupforumtopic">
 										
+										<autocomplete name="bp-component-groups-forum-topic-title" label="Title">
+											<value>%%forum_topic_title%%</value>
+											<value>%%forum_topic_text%%</value>
+											<value>%%forum_topic_author%%</value>
+											<value>%%group%%</value>
+											<value>%%group_description%%</value>
+											<value>%%component_name%%</value>
+											<value>%%site_name%%</value>
+											<value>%%site_description%%</value>
+										</autocomplete>
+										
+										<autocomplete name="bp-component-groups-forum-topic-description" label="Description">
+											<value>%%forum_topic_title%%</value>
+											<value>%%forum_topic_text%%</value>
+											<value>%%forum_topic_author%%</value>
+											<value>%%group%%</value>
+											<value>%%group_description%%</value>
+											<value>%%component_name%%</value>
+											<value>%%site_name%%</value>
+											<value>%%site_description%%</value>
+										</autocomplete>
+										
+										<checkbox name="bp-component-groups-forum-topic-noindex" label="Ban searchengines" />
+										
 									</section>
 									<section title="Group Members" id="sp_pagetypes_bp_profiles_groupmembers">
+										
+										<autocomplete name="bp-component-groups-members-title" label="Title">
+											<value>%%group%%</value>
+											<value>%%group_description%%</value>
+											<value>%%component_name%%</value>
+											<value>%%site_name%%</value>
+											<value>%%site_description%%</value>
+										</autocomplete>
+										
+										<autocomplete name="bp-component-groups-members-description" label="Description">
+											<value>%%group%%</value>
+											<value>%%group_description%%</value>
+											<value>%%component_name%%</value>
+											<value>%%site_name%%</value>
+											<value>%%site_description%%</value>
+										</autocomplete>
+										
+										<checkbox name="bp-component-groups-members-noindex" label="Ban searchengines" />
 										
 									</section>
 								</accordion>
@@ -121,6 +503,20 @@
 								<accordion id="sp_pagetypes_bp_forums">
 									<section title="Forums Directory" id="sp_pagetypes_bp_groups_forumsdirectory">
 										
+										<autocomplete name="bp-component-forums-title" label="Title">
+											<value>%%component_name%%</value>
+											<value>%%site_name%%</value>
+											<value>%%site_description%%</value>
+										</autocomplete>
+										
+										<autocomplete name="bp-component-forums-description" label="Description">
+											<value>%%component_name%%</value>
+											<value>%%site_name%%</value>
+											<value>%%site_description%%</value>
+										</autocomplete>
+										
+										<checkbox name="bp-component-forums-noindex" label="Ban searchengines" />
+										
 									</section>
 								</accordion>
 							</tab>
@@ -128,12 +524,40 @@
 								<accordion id="sp_pagetypes_bp_blogs">
 									<section title="Blogs Directory" id="sp_pagetypes_bp_blogs_blogsdirectory">
 										
+										<autocomplete name="bp-component-blogs-title" label="Title">
+											<value>%%component_name%%</value>
+											<value>%%site_name%%</value>
+											<value>%%site_description%%</value>
+										</autocomplete>
+										
+										<autocomplete name="bp-component-blogs-description" label="Description">
+											<value>%%component_name%%</value>
+											<value>%%site_name%%</value>
+											<value>%%site_description%%</value>
+										</autocomplete>
+										
+										<checkbox name="bp-component-blogs-noindex" label="Ban searchengines" />
+										
 									</section>
 								</accordion>
 							</tab>
 							<tab id="sp_pagetypes_bp_registration" title="Registration">
 								<accordion id="sp_pagetypes_bp_registration">
 									<section title="Registration" id="sp_pagetypes_bp_registration_registration">
+										
+										<autocomplete name="bp-component-registration-title" label="Title">
+											<value>%%component_name%%</value>
+											<value>%%site_name%%</value>
+											<value>%%site_description%%</value>
+										</autocomplete>
+										
+										<autocomplete name="bp-component-registration-description" label="Description">
+											<value>%%component_name%%</value>
+											<value>%%site_name%%</value>
+											<value>%%site_description%%</value>
+										</autocomplete>
+										
+										<checkbox name="bp-component-registration-noindex" label="Ban searchengines" />
 										
 									</section>
 								</accordion>
