@@ -2,6 +2,7 @@
 
 function sp_get_bp_components(){
 	global $bp;
+	
 	$bp_components = array();
 	
 	foreach ( (array) $bp as $key => $value ) {

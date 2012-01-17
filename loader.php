@@ -139,6 +139,8 @@ class SeoPress_Loader{
 			}
 		}
 		
+		add_filter( 'tk_wp_jqueryui_tabs_after_content_sp_page_types_plugins', 'sp_admin_bp_plugins_tabs' );
+		
 		$wml = SEOPRESS_ABSPATH . 'components/admin/backend.xml' ;
 		tk_wml_parse_file( $wml );
 		
@@ -176,12 +178,12 @@ class SeoPress_Loader{
 		require_once SEOPRESS_ABSPATH . 'includes/lib/buddypress/bp-functions.php';
 		
 		// Admin pages
-		require_once SEOPRESS_ABSPATH . 'components/admin/sp_admin_core.php';
-		require_once SEOPRESS_ABSPATH . 'components/admin/seo.php';
-		require_once SEOPRESS_ABSPATH . 'components/admin/options.php';
 		require_once SEOPRESS_ABSPATH . 'components/admin/single_metabox.php';
 		
 		require_once SEOPRESS_ABSPATH . 'update.php';
+		
+		// Buddypress Admin
+		require_once SEOPRESS_ABSPATH . 'components/admin/seo_buddypress_plugins.tab.php';
 		
 		// Loading css and js
 		require_once SEOPRESS_ABSPATH . 'includes/css/loader.php';

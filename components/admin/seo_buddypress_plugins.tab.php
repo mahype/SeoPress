@@ -32,17 +32,25 @@ function sp_admin_bp_plugins_tab(){
 		
 }
 
-function sp_admin_bp_plugins_tabs(){
+function sp_admin_bp_plugins_tabs( $html ){
 	global $bp; 
 	
 	// Getting saved data
-	$bp_seo_components = get_blog_option(SITE_ID_CURRENT_SITE,"bp_seo_plugins"); // <===== Have to be replaced with framework !!!	
+	$bp_seo_components = get_blog_option( SITE_ID_CURRENT_SITE,"bp_seo_plugins"); // <===== Have to be replaced with framework !!!	
 	
 	
 	$tabs = new	TK_Jqueryui_Tabs();	
 	
 	// Getting all active components
 	$bp_components = sp_get_bp_components();
+	
+	echo '<pre>';
+	print_r( $bp );
+	echo '</pre>';
+	
+	echo '<pre>';
+	print_r( $bp_components );
+	echo '</pre>';
 	 
 	foreach ($bp_components as $bp_component) {
 		
@@ -53,7 +61,7 @@ function sp_admin_bp_plugins_tabs(){
 		}
 	}
 	
-	$html = $tabs->get_html();
+	$html.= $tabs->get_html();
 	
 	return $html;
 }
