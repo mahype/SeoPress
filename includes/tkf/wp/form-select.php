@@ -28,62 +28,84 @@ class TK_WP_Form_Select extends TK_Form_Select{
 	 */
 	function __construct( $name, $args = array() ){
 		global $post, $tk_form_instance_option_group;
-		
 		$defaults = array(
-			'id' => '',
-			'extra' => '',
-			'size' => '',
 			'option_group' => $tk_form_instance_option_group,
+			'id' => '',
+			'default_value' => '',
+			'size' => '',
+			'css_classes' => '',
+			'rows' => '',
+			'cols' => '',
+			'extra' => '',
+			'multiselect' => FALSE,
+			'multi_index' => '',
 			'before_element' => '',
 			'after_element' => ''
 		);
 		
-		$args = wp_parse_args($args, $defaults);
-		extract( $args , EXTR_SKIP );
+		$parsed_args = wp_parse_args( $args, $defaults);
+		extract( $parsed_args , EXTR_SKIP );
 		
-		if( $post != '' ){
-
-			$option_group_value = get_post_meta( $post->ID , $option_group , TRUE );
-			
-			$field_name = $option_group . '[' . $name . ']';
-			$value = $option_group_value[ $name ];
-
-		}else{
-			$value = get_option( $option_group  . '_values' );
-						
-			$this->option_group = $option_group;
-			$field_name = $option_group . '_values[' . $name . ']';	
-			
-			$value = $value[ $name ];
-		} 
+		// Getting value
+		$value = tk_get_value( $name, array( 'option_group' => $option_group, 'multi_index' => $multi_index, 'default_value' => $default_value ) );
 		
-		$args['name'] = $field_name;
-		$args['value'] = $value;
+		// Putting Args to parent
+		$args = array(
+			'id' => $id,
+			'name' => $name,
+			'value' => $value,
+			'size' => $size,
+			'css_classes' => $css_classes,
+			'rows' => '',
+			'cols' => '',
+			'extra' => $extra,
+			'multiselect' => $multiselect,
+			'multi_index' => $multi_index,
+			'before_element' => $before_element,
+			'after_element' => $after_element
+		);
 		
 		parent::__construct( $args );
+		
+		// Rewriting Fieldname and Input Field String for WP Savings
+		$name = tk_get_field_name( $name, array( 'option_group' => $option_group, 'multi_index' => $multi_index ) );
+		$this->str_name = ' name="' . $name . '"';
 
 	}			
 }
 
-function tk_form_select( $name, $options, $args = array(), $return_object = FALSE ){
+function tk_form_select( $name, $options, $args = array(), $return = 'echo' ){
 	$select = new TK_WP_Form_Select( $name, $args );
 	
-	foreach ( $options AS $option ){
-		if( !is_array( $option) ){
-			$select->add_option( $option );
-		}else{
-			$option_name = $option['name'];
-			$args = array(
-				'value' => $option['value'],
-				'extra' => $option['extra']
-			);
-			$select->add_option( $option_name, $args );
+	if( is_array( $options ) ){
+		foreach ( $options AS $option ){
+			if( !is_array( $option) ){
+				$select->add_option( $option );
+			}else{
+				if( !isset( $option['id'] ) )
+					$option['id'] = '';
+					
+				if( !isset( $option['name'] ) )
+					$option['name'] = '';
+				
+				if( !isset( $option['option_name'] ) )
+					$option['option_name']  = '';
+				
+				if( !isset( $option['extra'] ) )
+					$option['extra']  = '';
+				
+				if( !isset( $option['value'] ) )
+					$option['value']  = '';
+				
+				$args = array(
+					'id'=> $option['id'],
+					'option_name' => $option['option_name'],
+					'extra' => $option['extra']
+				);
+				$select->add_option( $option['value'], $args );
+			}
 		}
 	}
 	
-	if( TRUE == $return_object ){
-		return $select;
-	}else{
-		return $select->get_html();
-	}
+	return tk_element_return( $select, $return );
 }

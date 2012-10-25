@@ -33,8 +33,11 @@ class TK_Form_select extends TK_Form_element{
 			'id' => '',
 			'name' => '',
 			'value' => '',
+			'onchange' => '',
 			'size' => '',
-			'extra' => ''
+			'multiselect' => FALSE,
+			'extra' => '',
+			'elements' => ''
 		);
 		
 		$args = wp_parse_args($args, $defaults);
@@ -42,11 +45,12 @@ class TK_Form_select extends TK_Form_element{
 		
 		parent::__construct( $args );
 		
-		$this->size = $size;		
-		$this->elements = array();
-		$this->extra = $extra;
-		$this->before_element = $before_element;
-		$this->after_element = $after_element;
+		$this->size = $size;	
+		$this->multi_select = $multi_select;
+		$this->onchange = $onchange;
+		
+		if( $this->onchange != '' ) $this->str_onchange = '  onchange="' . $this->onchange . '"';
+		if( $this->size != '' ) $this->str_size = ' size="' . $this->size . '"';
 	}
 	
 	/**
@@ -58,17 +62,17 @@ class TK_Form_select extends TK_Form_element{
 	 * @param string $option The option to show in list
 	 * @param array $args Array of [ $value Value, $extra Extra option code ]
 	 */
-	function add_option( $option, $args = array() ){
+	function add_option( $value, $args = array() ){
 		$defaults = array(
-			'value' => '',
+			'id' => '',
+			'option_name' => '',
 			'extra' => ''
 		);
 		
-		$args = wp_parse_args($args, $defaults);
-		extract( $args , EXTR_SKIP );
+		$parsed_args = wp_parse_args( $args, $defaults );
+		extract( $parsed_args , EXTR_SKIP );
 		
-		$element = array( 'option' => $option, 'value' => $value, 'extra' => $extra );
-		array_push( $this->elements, $element  );
+		$this->elements[ $value ] = array( 'id' => $id, 'value'=> $value, 'option_name' => $option_name, 'extra' => $extra );
 	}
 	
 	/**
@@ -80,45 +84,127 @@ class TK_Form_select extends TK_Form_element{
 	 * @return string $html The HTML of select box
 	 */
 	function get_html(){
-		if( $this->id != '' ) $id = ' id="' . $this->id . '"';
-		if( $this->name != '' ) $name = ' name="' . $this->name . '"';
-		if( $this->size != '' ) $size = ' size="' . $this->size . '"';		
-		if( $this->extra != '' ) $extra = $this->extra;
+		global $tk_hidden_elements;
+		
+		// Merging values
+		$this->merge_option_elements();
+		
+		if( $this->multiselect ):
+			if( $this->name != '' ) $name_string = ' name="' . $this->name . '[]"';
+			$multiselect_string = ' multiple="multiple"';
+		else:
+			if( $this->name != '' ) $name_string = ' name="' . $this->name . '"';
+		endif;
 		
 		$html = $this->before_element;
-		$html.= '<select' . $id . $name . $size . $extra . ' />';
+
+		$html.= '<select' . $this->str_id . $this->str_name . $this->str_size . $this->str_onchange  . $this->str_css_classes . $multiselect_string . $this->extra . '>';
 		
+		// Adding options
+		$options = '';
+
 		if( count( $this->elements ) > 0 ){
-			foreach( $this->elements AS $element ){
-				$value = '';
-				$extra = '';
+			
+			foreach( $this->elements AS $value => $element ){
 				
-				if( isset( $element['extra'] ) && $element['extra'] != '' ){ 
-					$extra = $element['extra'];
-				}
-				
-				if( isset( $element['value'] ) && $element['value'] != ''  ){
-					$value =  ' value="' . $element['value'] . '"';
-							
-					if( $this->value == $element['value'] && $element['value'] != '' ){
-						$html.=  '<option' . $value . ' selected' . $extra . '>' . $element['option'] . '</option>';;
-					}else{
-						$html.=  '<option' . $value . $extra . '>' . $element['option'] . '</option>';;
-					}
-				}else{
-					if( $this->value == $element['option'] ){
-						$html.=  '<option' . $value . ' selected' . $extra . '>' . $element['option'] . '</option>';;
-					}else{
-						$html.=  '<option' . $value . $extra . '>' . $element['option'] . '</option>';;
-					}
-				}
+				if( !in_array( $element['id'], $tk_hidden_elements ) ):
+					
+					/*
+					echo '<pre>';
+					print_r( $element );
+					echo '</pre>';
+					 */
+					
+					$option_name = $element['option_name'];
+					$value_string = ' value="' . $value . '"';
+					$extra_string = $element['extra'];
+					
+					if( $option_name == '' )
+						$option_name = $value;
+					
+					if( is_array( $this->value ) ):
+						// If value is from a multiselect box
+						if( in_array( $value, $this->value ) ):
+							$options .=  '<option' . $value_string . ' selected' . $extra_string . '>' . $option_name . '</option>';
+						else:
+							$options .=  '<option' . $value_string . $extra_string . '>' . $option_name . '</option>';
+						endif;					
+						
+						
+					else:
+						// Standard value
+						if( $this->value == $value && $value != '' ):
+							$options .=  '<option' . $value_string . ' selected' . $extra_string . '>' . $option_name . '</option>';
+						else:
+							$options .=  '<option' . $value_string . $extra_string . '>' . $option_name . '</option>';
+						endif;
+						
+					endif;
+				endif;
+				// No else because is only option in it
 			}
+
 		}
 		
-		$html.= '</select>';
+		$options = apply_filters( 'tk_select_options_' . $this->id, $options, $this->id );
+
+		$html.= $options . '</select>';
 		$html.= $this->after_element;
 		
 		return $html;
-	}	
+	}
+
+	function merge_option_elements(){
+		
+		global $tk_select_option_elements;
+		
+		if( !isset( $tk_select_option_elements[ $this->id ]  ) )
+			return false;
+		
+		if( is_array( $tk_select_option_elements[ $this->id ] ) ){
+			
+			foreach( $tk_select_option_elements[ $this->id ] AS $element ){
+				
+				if( $element[ 'action' ] == 'add' )
+					$this->elements[ $element[ 'value' ] ] = array( 'option_name' => $element[ 'option_name' ], 'extra' => $element[ 'extra' ] );
+				
+				if( $element[ 'action' ] == 'delete' )
+					unset ( $this->elements[ $element[ 'value' ]  ] );
+					
+			}
+		}
+
+	}
+	// $element = array( 'option_name' => $option_name, 'extra' => $extra );
+}
+
+function tk_select_add_option( $select_id, $value, $option_name = '', $extra = '' ){
+	global $tk_select_option_elements;
 	
+	if( $option_name == '' )
+		$option_name = $value;
+	
+	if( !is_array( $tk_select_option_elements[ $select_id ] ) )
+		$tk_select_option_elements[ $select_id ] = array();
+		
+	array_push( $tk_select_option_elements[ $select_id ], array( 'action' => 'add' , 'value' => $value, 'option_name' => $option_name, 'extra' => $extra ) );
+}
+
+function tk_select_delete_option( $select_id, $value ){
+	global $tk_select_option_elements;
+	
+	if( !is_array( $tk_select_option_elements[ $select_id ] ) )
+		$tk_select_option_elements[ $select_id ] = array();
+		
+	array_push( $tk_select_option_elements[ $select_id ], array( 'action' => 'delete' , 'value' => $value ) );
+}
+
+function tk_select( $args, $return_object = FALSE ){
+    $select = new TK_Form_select( $args );
+
+    if( TRUE == $return_object ){
+        return $select;
+    }else{
+        return $select->get_html();
+    }   
 }

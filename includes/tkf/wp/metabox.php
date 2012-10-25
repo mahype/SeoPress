@@ -4,27 +4,49 @@ class TK_WP_Metabox extends TK_HTML{
 	
 	var $option_group;
 	var $title;
-	var $page;
+	var $content;
+	var $post_type;
 	
-	function tk_wp_metabox( $option_group, $title, $page = 'post' ){
+	
+	function tk_wp_metabox( $id, $title, $content, $post_type = 'post' ){
+		$this->__construct( $id, $title, $content, $post_type );		
 	}
 	
-	function __construct( $option_group, $title, $page = 'post' ){
+	function __construct( $id, $title, $content, $post_type = 'post' ){
+		global $tkf_metabox_ids, $tkf_metabox_id;
+		
 		parent::__construct();
 		
-		$this->option_group = $option_group;
+		$this->id = $id;
 		$this->title = $title;
-		$this->page = $page;
+		$this->post_type = $post_type;
+		$this->content = $content;
+		
+		$tkf_metabox_id = $id;
+		
+		if( $this->id != '' && !in_array( $this->id, $tkf_metabox_ids ) ):
+			$html = apply_filters( 'tk_metabox_before_content_' . $this->id, $html );
+			add_action( 'add_meta_boxes', array( $this, 'create' ) );
+			array_push( $tkf_metabox_ids, $tkf_metabox_id );
+		endif;
 	}
 	
 	function get_html(){
-		$html = wp_nonce_field( $this->option_group , $this->option_group . '_nonce' );
-		$html.= parent::get_html();
+		// Getting HTML
+		$tkdb = new TK_Display();
+		$html.= $tkdb->get_html( $this->content );
+		unset( $tkdb );
+		
 		return $html;
 	}
-		
+	
 	function create(){
-		add_meta_box( $this->option_group, $this->title, array( $this, 'write_html' ) , $this->page );
+		add_meta_box( $this->id, $this->title, array( $this, 'write_html' ) , $this->post_type );
 	}
 	
+}
+
+function tk_wp_metabox( $id, $title, $content, $post_type = 'post', $return = 'echo' ){
+	$metabox = new TK_WP_Metabox( $id, $title, $content, $post_type );
+	return tk_element_return( $metabox, $return );
 }

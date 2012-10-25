@@ -30,7 +30,8 @@ class TK_Form_Button extends TK_Form_Element{
 		$defaults = array(
 			'id' => '',
 			'name' => '',
-			'submit' => true,
+			'css_classes' => '',
+			'submit' => TRUE,
 			'extra' => '',
 			'before_element' => '',
 			'after_element' => ''
@@ -39,6 +40,7 @@ class TK_Form_Button extends TK_Form_Element{
 		$args = wp_parse_args($args, $defaults);
 		extract( $args , EXTR_SKIP );
 		
+		$args['name'] = $name;	
 		$args['value'] = $value;	
 		parent::__construct( $args );
 		
@@ -58,6 +60,11 @@ class TK_Form_Button extends TK_Form_Element{
 	 * @return string $html The HTML of button
 	 */
 	function get_html(){
+		$id = '';
+		$name = '';
+		$value = '';
+		$extra = '';
+		
 		if( $this->id != '' ) $id = ' id="' . $this->id . '"';
 		if( $this->name != '' ) $name = ' name="' . $this->name . '"';
 		if( $this->value != '' ) $value = ' value="' . $this->value . '"';

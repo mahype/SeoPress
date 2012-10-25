@@ -36,36 +36,7 @@ if ( !defined( 'ABSPATH' ) ) exit;
 
 global $blog_id, $meta, $docroot, $seopress_plugin_url, $seopress_plugin_url, $wpdb;
 
-class SeoPress_Loader{
-	/**
-	 * The plugin version
-	 */
-	const VERSION 	= '1.3';
-	
-	/**
-	 * Minimum required WP version
-	 */
-	const MIN_WP 	= '3.2.1';
-	
-	/**
-	 * Minimum required BP version
-	 */
-	const MIN_BP 	= '1.5';
-
-	/**
-	 * Minimum required PHP version
-	 */
-	const MIN_PHP 	= '5.2.1';
-
-	/**
-	 * Name of the plugin folder
-	 */
-	static $plugin_name;
-
-	/**
-	 * Can the plugin be executed
-	 */
-	static $active = false;
+class SeoPress{
 	
 	/**
 	 * PHP5 constructor
@@ -75,36 +46,35 @@ class SeoPress_Loader{
 	 * @uses	plugin_basename()
 	 * @uses	add_action()
 	 */
-	public function init()
-	{
-		self::$plugin_name = plugin_basename( __FILE__ );
-
-		self::constants();
-		
-		add_action( 'plugins_loaded', 	array( __CLASS__, 'framework'  			) 	, 0 );
-
-		add_action( 'init', 			array( __CLASS__, 'check_requirements' 	)	, 10 );
-		add_action( 'init', 			array( __CLASS__, 'start' 			   	) 	, 10 );
-
-		add_action( 'admin_menu', 		array( __CLASS__, 'init_admin' 			) 	, 10 );
-		
-		add_action( 'admin_head', 		array( __CLASS__, 'activation_script' 	) 	, 10 );
-		add_action( 'activated_plugin', array( __CLASS__, 'activate'			)	, 10 );		
+	function SeoPress(){
+		$this->__construct();
 	}
+	
+	function __construct(){
+		// Loading base
+		$this->constants();
+		$this->includes();
 		
-	/**
-	 * Check for required versions
-	 * 
-	 * Checks for WP, BP, PHP and Jigoshop versions
-	 * 
-	 * @since 	1.3
-	 * @access 	public
-	 * @global 	string 	$wp_version 	Current WordPress version
-	 * @return 	boolean
-	 */
-	public function check_requirements()
-	{
-		self::$active = ( ! $error ) ? true : false;
+		add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) ); // Loading Textdomain
+		
+		if( is_admin() ):
+			add_action( 'network_admin_menu', 	array( $this, 'admin_menu_network' 	)	, 0 ); // Multisite admin menu
+			add_action( 'admin_menu', 			array( $this, 'admin_menu' 			)	, 0 ); // Normal admin menu
+			
+			add_action( 'plugins_loaded', 		array( $this, 'admin_framework' 	) 	, 0 ); // Loading Framework for admin
+			add_action( 'admin_head', 			array( $this, 'activation_script' 	) 	, 10 );
+			add_action( 'activated_plugin', 	array( $this, 'activate'			)	, 10 );		
+		else:
+			add_action( 'plugins_loaded', 		array( $this, 'framework'  			) 	, 0 );
+		endif;
+	}
+	
+	function admin_menu_network(){
+		add_submenu_page( 'sites.php', __( 'SeoPress', 'default-blog-options' ), __( 'SeoPress', 'default-blog-options' ), 'manage_options', 'defaultblog', array( $this, 'admin_page' ) );
+	}
+	
+	function admin_menu(){
+		add_submenu_page( 'tools.php', __( 'SeoPress', 'default-blog-options' ), __( 'SeoPress', 'default-blog-options' ), 'manage_options', 'defaultblog', array( $this, 'admin_page' ) );
 	}
 	
 	/**
@@ -118,18 +88,28 @@ class SeoPress_Loader{
 	 * @return 	boolean
 	 */
 	public function framework(){
-		require_once SEOPRESS_ABSPATH . 'includes/tkf/loader.php';
-		
-		$args['jqueryui_components'] = array( 'jquery-ui-tabs', 'jquery-ui-accordion', 'jquery-ui-autocomplete' );
-		$args['text_domain'] = 'seopress';
 		$args['forms'] = array( 'sp_seo_settings', 'sp_options' );
-		
 		tk_framework( $args );
 	}
 
-	public function init_admin(){
-		
-		if( !current_user_can('level_10') ){ 
+	/**
+	 * Starting framework in admin
+	 * 
+	 * Loading the themekraft framework and starting it
+	 * 
+	 * @since 	1.3
+	 * @access 	public
+	 * @global 	string 	$wp_version 	Current WordPress version
+	 * @return 	boolean
+	 */
+	public function admin_framework(){
+		$args['jqueryui_components'] = array( 'jquery-ui-tabs', 'jquery-ui-accordion', 'jquery-ui-autocomplete' );
+		$args['forms'] = array( 'sp_seo_settings', 'sp_options' );
+		tk_framework( $args );
+	}
+
+	public function admin_init(){
+		if( !current_user_can( 'level_10' ) ){ 
 			return false;
 		} else {
 			if( defined('SITE_ID_CURRENT_SITE') ){	
@@ -141,7 +121,7 @@ class SeoPress_Loader{
 		
 		add_filter( 'tk_wp_jqueryui_tabs_after_content_sp_page_types_plugins', 'sp_admin_bp_plugins_tabs' );
 		
-		$wml = SEOPRESS_ABSPATH . 'components/admin/backend.xml' ;
+		$wml = SEOPRESS_FOLDER . 'components/admin/backend.xml' ;
 		tk_wml_parse_file( $wml );
 		
 		tk_register_wp_option_group( 'sp_post_metabox' );
@@ -161,50 +141,43 @@ class SeoPress_Loader{
 	 * @since 	1.3
 	 * @access 	public
 	 */
-	public function start()
-	{
-		global $seopress;
-		
-		if( self::$active === false )
-			return false;
+	public function includes(){
+		require_once SEOPRESS_FOLDER . 'includes/tkf/loader.php';
 		
 		// Functions (Should move to Framework!)
-		require_once SEOPRESS_ABSPATH . 'includes/lib/io.inc.php';
+		require_once SEOPRESS_FOLDER . 'includes/lib/io.inc.php';
 		
-		require_once SEOPRESS_ABSPATH . 'includes/lib/wordpress/io.inc.php';
-		require_once SEOPRESS_ABSPATH . 'includes/lib/wordpress/wp_url.inc.php';
-		require_once SEOPRESS_ABSPATH . 'includes/lib/wordpress/functions.php';
+		require_once SEOPRESS_FOLDER . 'includes/lib/wordpress/io.inc.php';
+		require_once SEOPRESS_FOLDER . 'includes/lib/wordpress/wp_url.inc.php';
+		require_once SEOPRESS_FOLDER . 'includes/lib/wordpress/functions.php';
 			
-		require_once SEOPRESS_ABSPATH . 'includes/lib/buddypress/bp-functions.php';
+		require_once SEOPRESS_FOLDER . 'includes/lib/buddypress/bp-functions.php';
 		
 		// Admin pages
-		require_once SEOPRESS_ABSPATH . 'components/admin/single_metabox.php';
+		require_once SEOPRESS_FOLDER . 'components/admin/single_metabox.php';
 		
-		require_once SEOPRESS_ABSPATH . 'update.php';
+		require_once SEOPRESS_FOLDER . 'update.php';
 		
 		// Buddypress Admin
-		require_once SEOPRESS_ABSPATH . 'components/admin/seo_buddypress_plugins.tab.php';
+		require_once SEOPRESS_FOLDER . 'components/admin/seo_buddypress_plugins.tab.php';
 		
 		// Loading css and js
-		require_once SEOPRESS_ABSPATH . 'includes/css/loader.php';
+		require_once SEOPRESS_FOLDER . 'includes/css/loader.php';
 		
 		// Components - Special tag engine
-		require_once SEOPRESS_ABSPATH . 'components/header/header.php';
+		require_once SEOPRESS_FOLDER . 'components/header/header.php';
 		
-		require_once SEOPRESS_ABSPATH . 'components/special-tags/special-tag-core.php';
-		require_once SEOPRESS_ABSPATH . 'components/special-tags/wp/page_types.php';
-		require_once SEOPRESS_ABSPATH . 'components/special-tags/wp/sets.php';
-		require_once SEOPRESS_ABSPATH . 'components/special-tags/wp/functions.php';
+		require_once SEOPRESS_FOLDER . 'components/special-tags/special-tag-core.php';
+		require_once SEOPRESS_FOLDER . 'components/special-tags/wp/page_types.php';
+		require_once SEOPRESS_FOLDER . 'components/special-tags/wp/sets.php';
+		require_once SEOPRESS_FOLDER . 'components/special-tags/wp/functions.php';
 		
-		require_once SEOPRESS_ABSPATH . 'components/special-tags/bp/page_types.php';
-		require_once SEOPRESS_ABSPATH . 'components/special-tags/bp/sets.php';
-		require_once SEOPRESS_ABSPATH . 'components/special-tags/bp/functions.php';
+		require_once SEOPRESS_FOLDER . 'components/special-tags/bp/page_types.php';
+		require_once SEOPRESS_FOLDER . 'components/special-tags/bp/sets.php';
+		require_once SEOPRESS_FOLDER . 'components/special-tags/bp/functions.php';
 		
 		// Components - Facebook
-		require_once SEOPRESS_ABSPATH . 'components/facebook/loader.php';
-		
-		// $seopress = new SP_CORE();
-		
+		require_once SEOPRESS_FOLDER . 'components/facebook/loader.php';
 	}
 
 	public function activation_script(){
@@ -253,7 +226,7 @@ class SeoPress_Loader{
 		// Redirect to plugin page and setup parameters
 		if( basename( $plugin ) == 'seopress.php' ){
 			update_option( 'seopress_setup', array( 'activation_run' => false ) );
-			wp_redirect( get_bloginfo('home') . '/wp-admin/admin.php?page=seopress_seo&sp_activate=true' );	
+			wp_redirect( get_bloginfo( 'home' ) . '/wp-admin/admin.php?page=seopress_seo&sp_activate=true' );	
 			exit;
 		}
 	}
@@ -264,26 +237,41 @@ class SeoPress_Loader{
 	 * @since 	1.0
 	 * @uses 	load_plugin_textdomain()
 	 */
-	public function translate()
-	{
-		load_plugin_textdomain( 'seopress', false, dirname( self::$plugin_name ) . '/languages/' );
+	public function load_textdomain(){
+		load_plugin_textdomain( 'seopress', false, SEOPRESS_FOLDER . '/languages/' );
+	}
+	
+	private function constants(){
+		define( 'SEOPRESS_FOLDER', 	$this->get_folder() );
+		define( 'SEOPRESS_URLPATH', $this->get_url_path() );
 	}
 	
 	/**
-	 * Declare all constants
-	 * 
-	 * @since 	1.3
-	 * @access 	private
-	 */
-	private function constants()
-	{
-		define( 'SEOPRESS_PLUGIN', 	self::$plugin_name );
-		define( 'SEOPRESS_VERSION',	self::VERSION );
-		define( 'SEOPRESS_FOLDER',	plugin_basename( dirname( __FILE__ ) ) );
-		define( 'SEOPRESS_ABSPATH',	trailingslashit( str_replace( "\\", "/", WP_PLUGIN_DIR .'/'. SEOPRESS_FOLDER ) ) );
-		define( 'SEOPRESS_URLPATH',	trailingslashit( plugins_url( '/'. SEOPRESS_FOLDER ) ) );
+	* Getting URL Path
+	*
+	* @package Default Blog
+	* @since 1.0
+	*
+	*/
+	private function get_url_path(){
+		$sub_path = substr( SEOPRESS_FOLDER, strlen( ABSPATH ), ( strlen( SEOPRESS_FOLDER ) ) );
+		$script_url = get_bloginfo( 'wpurl' ) . '/' . $sub_path;
+		return $script_url;
+	}
+	
+	/**
+	* Getting URL Path of theme
+	*
+	* @package Default Blog
+	* @since 1.0
+	*
+	*/
+	private function get_folder(){
+		$sub_folder = substr( dirname(__FILE__), strlen( ABSPATH ), ( strlen( dirname(__FILE__) ) - strlen( ABSPATH ) ) );
+		$script_folder = ABSPATH . $sub_folder;
+		return $script_folder;
 	}
 }
 
 // Get it on!!
-SeoPress_Loader::init();
+$seopress = new SeoPress();

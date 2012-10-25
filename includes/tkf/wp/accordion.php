@@ -49,15 +49,19 @@ class TK_Jqueryui_Accordion extends TK_HTML{
 	 */
 	function add_section( $id, $title, $content, $args = array() ){
 		$defaults = array(
+			'css_class' => '',
+			'style' => '',
 			'extra_title' => '',
-			'extra_content' => ''
+			'extra_content' => '',
+			
 		);
 		
 		$args = wp_parse_args($args, $defaults);
 		extract( $args , EXTR_SKIP );
 		
-		$element = array( 'id'=> $id, 'title' => $title, 'extra_title' => $extra_title,  'content' => $content, 'extra_content' => $extra_content );
+		$element = array( 'id'=> $id, 'title' => $title, 'extra_title' => $extra_title,  'content' => $content, 'css_class'=> $css_class, 'style'=> $style, 'extra_content' => $extra_content );
 		$this->add_element( $element );
+		
 	}
 
 	/**
@@ -69,7 +73,7 @@ class TK_Jqueryui_Accordion extends TK_HTML{
 	 * @return string $html The accordion as html
 	 * 
 	 */
-	function get_html( $hide_element = TRUE ){
+	function get_html( $hide_element = FALSE ){
 		global $tk_hidden_elements;
 		
 		// Creating elements
@@ -83,7 +87,20 @@ class TK_Jqueryui_Accordion extends TK_HTML{
 		
 			$html = '<script type="text/javascript">
 			jQuery(document).ready(function($){
-				$( ".' . $id . '" ).accordion({ header: "' . $this->title_tag . '", active: false, autoHeight: false, collapsible:true });
+					
+				var cookieName = "stickyAccordion_' . $id . '";
+				
+				$( ".' . $id . '" ).accordion({
+					header: "' . $this->title_tag . '", 
+					autoHeight: false, 
+					collapsible:true,
+					active: ( $.cookies.get( cookieName ) || 0 ),
+					change: function( e, ui )
+					{
+						$.cookies.set( cookieName, $( this ).find( "' . $this->title_tag . '" ).index ( ui.newHeader[0] ) );
+					}
+				});
+					
 			});
 	   		</script>';
 			
@@ -96,7 +113,7 @@ class TK_Jqueryui_Accordion extends TK_HTML{
 				if( !in_array( $element['id'], $tk_hidden_elements ) ){
 					if( $element['id'] == '' ){	$element_id = md5( $element['title'] ); }else{	$element_id = $element['id']; }
 					
-					$html.= '<' . $this->title_tag . ' ' . $element['extra_title']  . '><a href="#">';
+					$html.= '<' . $this->title_tag . ' ' . $element['extra_title']  . ' class="'.$element['css_class'].'" style="'.$element['style'].'"><a href="#">';
 					
 					if( is_object( $element['title'] ) ){
 						 $html.= $element['title']->get_html();
@@ -105,7 +122,7 @@ class TK_Jqueryui_Accordion extends TK_HTML{
 					}
 					
 					$html.= '</a></' . $this->title_tag . '>';
-					$html.= '<div id="' . $element['id'] . '"' . $element['extra_content']  . '>';
+					$html.= '<div id="' . $element['id'] . '"' . $element['extra_content']  . ' class="'.$element['css_class'].'">';
 					
 					if( $this->id != '' ) $html = apply_filters( 'tk_jqueryui_accordion_content_section_before_' . $this->id , $html );
 					if( $element['id'] != '' ) $html = apply_filters( 'tk_jqueryui_accordion_content_section_before_' . $element['id'], $html );
@@ -148,19 +165,26 @@ class TK_Jqueryui_Accordion extends TK_HTML{
 	}
 	
 }
-function tk_accordion( $id, $elements, $return_object = false ){
-	$accordion = new TK_Jqueryui_Accordion( $id );	
+function tk_accordion( $id, $elements, $return = 'echo' ){
+	$accordion = new TK_Jqueryui_Accordion( $id );
 	
 	foreach ( $elements AS $element ){
+		
+		if( !isset( $element['extra_title'] ) )
+			$element['extra_title'] = '';
+		
+		if( !isset( $element['extra_content'] ) )
+			$element['extra_content'] = '';
+		
 		$args = array(
+			'css_class' => $element['css_class'],
+			'style' => $element['style'],
 			'extra_title' => $element['extra_title'],
 			'extra_content' => $element['extra_content']
 		);
+		
 		$accordion->add_section( $element['id'], $element['title'], $element['content'], $args );
 	}
-	if( TRUE == $return_object ){
-		return $accordion;
-	}else{
-		return $accordion->get_html();
-	}	
+	
+	return tk_element_return( $accordion, $return );	
 }

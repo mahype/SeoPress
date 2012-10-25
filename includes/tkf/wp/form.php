@@ -28,7 +28,7 @@ class TK_WP_Form extends TK_Form{
 	 */
 	function __construct( $id, $option_group ){
 		$args['method'] = 'POST';
-		$args['action'] = 'options.php';
+		$args['action'] = admin_url('options.php');
 		$args['name'] = $id;
 		
 		parent::__construct( $id, $args );
@@ -49,6 +49,9 @@ class TK_WP_Form extends TK_Form{
 		$html = '<input type="hidden" name="option_page" value="' . esc_attr( $this->option_group ) . '" />';
 		$html.= '<input type="hidden" name="action" value="update" />';
 		$html.= wp_nonce_field( $this->option_group . '-options', "_wpnonce", true , false ) ;
+		
+		// Actionhook tk_form_before_content_ + id
+		if( $this->id != '' ) $html = apply_filters( 'tk_form_before_content_' . $this->id, $html );
 		
 		$this->add_element( $html );
 
@@ -89,7 +92,7 @@ function tk_form_end( $output = true ){
 	global $tk_form_instance_option_group, $tk_form_instance_id, $tk_form_instance_buffer, $tk_form_instance_content;
 	ob_end_flush();	
 	
-	$form = new TK_WP_Form( $tk_form_instance_option_group, $tk_form_instance_id );
+	$form = new TK_WP_Form( $tk_form_instance_id, $tk_form_instance_option_group );
 	
 	if( $tk_form_instance_content != '' ){
 		$form->add_element( $tk_form_instance_content );
@@ -111,11 +114,18 @@ function tk_register_wp_option_group( $option_group ){
 	$post_option_group = $option_group;
 	
 	add_action( 'save_post', 'tk_save_wp_metabox_option_group' );
-	register_setting( $option_group, $option_group . '_values' );
+    //register_setting( $option_group, $option_group . '_values', create_function('$input', 'mail("mail@sven-lehnert.de", "Mein Betreff", "asas".print_r($input)); return $input;') );
+    register_setting( $option_group, $option_group . '_values', 'tk_sanitize_callback' );
+}
+
+function tk_sanitize_callback($input){
+    return $input;
 }
 
 function tk_save_wp_metabox_option_group( $post_id ){
 	global $post_option_group;
+	
+//	echo 'POG: ' . $post_option_group;
 	
 	// verify if this is an auto save routine. 
 	// If it is our form has not been submitted, so we dont want to do anything

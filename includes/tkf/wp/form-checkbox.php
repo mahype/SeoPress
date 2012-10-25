@@ -34,6 +34,7 @@ class TK_WP_Form_Checkbox extends TK_Form_Checkbox{
 			'value' => '',
 			'extra' => '',
 			'option_group' => $tk_form_instance_option_group,
+			'multi_index' => '',
 			'before_element' => '',
 			'after_element' => ''
 		);
@@ -41,21 +42,8 @@ class TK_WP_Form_Checkbox extends TK_Form_Checkbox{
 		$args = wp_parse_args($args, $defaults);
 		extract( $args , EXTR_SKIP );
 		
-		if( $post != '' ){
-
-			$option_group_value = get_post_meta( $post->ID , $option_group , TRUE );
-			
-			$field_name = $option_group . '[' . $name . ']';
-			$value = $option_group_value[ $name ];
-
-		}else{
-			$value = get_option( $option_group  . '_values' );
-						
-			$this->option_group = $option_group;
-			$field_name = $option_group . '_values[' . $name . ']';	
-			
-			$value = $value[ $name ];
-		} 
+		$field_name = tk_get_field_name( $name, array( 'option_group' => $option_group, 'multi_index' => $multi_index ) );
+		$value = tk_get_value( $name, array( 'option_group' => $option_group, 'multi_index' => $multi_index, 'default_value' => $default_value ) );
 		
 		$checked = FALSE;
 		
@@ -70,12 +58,7 @@ class TK_WP_Form_Checkbox extends TK_Form_Checkbox{
 
 	}		
 }
-function tk_form_checkbox( $name, $args = array(), $return_object = FALSE ){
+function tk_form_checkbox( $name, $args = array(), $return = 'echo' ){
 	$checkbox = new TK_WP_Form_Checkbox( $name, $args  );
-	
-	if( TRUE == $return_object ){
-		return $checkbox;
-	}else{
-		return $checkbox->get_html();
-	}
+	return tk_element_return( $checkbox, $return );
 }

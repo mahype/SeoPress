@@ -57,13 +57,16 @@ class TK_Form extends TK_HTML{
 	 * 
 	 */
 	function get_html(){
-		// Adding id to the form
-		$id = ' id="' . $this->id . '"';
-		
 		// Adding method to the form
-		$method = ' method="' . $this->method . '"';
+		$method_str = ' method="' . $this->method . '"';
 		
-		$html = '<form' . $id . $method . ' action="' . $this->action . '" name=' . $this->name . '>';
+		$id_str = '';
+		$name_str = '';
+		
+		if( $this->id != '' ) $id_str = ' id="' . $this->id . '"';
+		if( $this->name != '' ) $name_str = ' name="' . $this->name . '"';
+		
+		$html = '<form' . $id_str . $method_str . ' action="' . $this->action . '"' . $name_str . ' enctype="multipart/form-data">';
 		
 		$html = apply_filters( 'tk_form_start_' . $this->id, $html );
 		
@@ -74,7 +77,7 @@ class TK_Form extends TK_HTML{
 			unset( $tkdb );
 		}
 		
-		$html = apply_filters( 'tk_form_end_' . $id, $html );
+		$html = apply_filters( 'tk_form_end_' . $this->id, $html );
 				
 		$html.='</form>';
 		
