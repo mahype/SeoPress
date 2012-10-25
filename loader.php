@@ -8,7 +8,7 @@
  * Author: Sven Lehnert, Sven Wagener
  * Author URI: http://themekraft.com/
  * License: GNU GENERAL PUBLIC LICENSE 3.0 http://www.gnu.org/licenses/gpl.txt
- * Version: 1.3
+ * Version: 2.0 alpha
  * Text Domain: seopress
  * Site Wide Only: true
  * 
@@ -142,42 +142,42 @@ class SeoPress{
 	 * @access 	public
 	 */
 	public function includes(){
-		require_once SEOPRESS_FOLDER . 'includes/tkf/loader.php';
+		require_once SEOPRESS_FOLDER . '/includes/tkf/loader.php';
 		
 		// Functions (Should move to Framework!)
-		require_once SEOPRESS_FOLDER . 'includes/lib/io.inc.php';
+		require_once SEOPRESS_FOLDER . '/includes/lib/io.inc.php';
 		
-		require_once SEOPRESS_FOLDER . 'includes/lib/wordpress/io.inc.php';
-		require_once SEOPRESS_FOLDER . 'includes/lib/wordpress/wp_url.inc.php';
-		require_once SEOPRESS_FOLDER . 'includes/lib/wordpress/functions.php';
+		require_once SEOPRESS_FOLDER . '/includes/lib/wordpress/io.inc.php';
+		require_once SEOPRESS_FOLDER . '/includes/lib/wordpress/wp_url.inc.php';
+		require_once SEOPRESS_FOLDER . '/includes/lib/wordpress/functions.php';
 			
-		require_once SEOPRESS_FOLDER . 'includes/lib/buddypress/bp-functions.php';
+		require_once SEOPRESS_FOLDER . '/includes/lib/buddypress/bp-functions.php';
 		
 		// Admin pages
-		require_once SEOPRESS_FOLDER . 'components/admin/single_metabox.php';
+		require_once SEOPRESS_FOLDER . '/components/admin/single_metabox.php';
 		
-		require_once SEOPRESS_FOLDER . 'update.php';
+		require_once SEOPRESS_FOLDER . '/update.php';
 		
 		// Buddypress Admin
-		require_once SEOPRESS_FOLDER . 'components/admin/seo_buddypress_plugins.tab.php';
+		require_once SEOPRESS_FOLDER . '/components/admin/seo_buddypress_plugins.tab.php';
 		
 		// Loading css and js
-		require_once SEOPRESS_FOLDER . 'includes/css/loader.php';
+		require_once SEOPRESS_FOLDER . '/includes/css/loader.php';
 		
 		// Components - Special tag engine
-		require_once SEOPRESS_FOLDER . 'components/header/header.php';
+		require_once SEOPRESS_FOLDER . '/components/header/header.php';
 		
-		require_once SEOPRESS_FOLDER . 'components/special-tags/special-tag-core.php';
-		require_once SEOPRESS_FOLDER . 'components/special-tags/wp/page_types.php';
-		require_once SEOPRESS_FOLDER . 'components/special-tags/wp/sets.php';
-		require_once SEOPRESS_FOLDER . 'components/special-tags/wp/functions.php';
+		require_once SEOPRESS_FOLDER . '/components/special-tags/special-tag-core.php';
+		require_once SEOPRESS_FOLDER . '/components/special-tags/wp/page_types.php';
+		require_once SEOPRESS_FOLDER . '/components/special-tags/wp/sets.php';
+		require_once SEOPRESS_FOLDER . '/components/special-tags/wp/functions.php';
 		
-		require_once SEOPRESS_FOLDER . 'components/special-tags/bp/page_types.php';
-		require_once SEOPRESS_FOLDER . 'components/special-tags/bp/sets.php';
-		require_once SEOPRESS_FOLDER . 'components/special-tags/bp/functions.php';
+		require_once SEOPRESS_FOLDER . '/components/special-tags/bp/page_types.php';
+		require_once SEOPRESS_FOLDER . '/components/special-tags/bp/sets.php';
+		require_once SEOPRESS_FOLDER . '/components/special-tags/bp/functions.php';
 		
 		// Components - Facebook
-		require_once SEOPRESS_FOLDER . 'components/facebook/loader.php';
+		require_once SEOPRESS_FOLDER . '/components/facebook/loader.php';
 	}
 
 	public function activation_script(){

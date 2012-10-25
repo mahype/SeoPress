@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: seo,buddypress,wpmu,wp,searchengine optimization,networked blogs,title,meta,meta description,meta keywords,noindex,facebook,open graph
 Requires at least: 2.9.x
 Tested up to: 3.2 & Buddypress 1.2.x
-Stable tag:  1.3
+Stable tag:  2.0 alpha
 
 Searchengine optimization plugin for Wordpress & Buddypress
 
@@ -86,9 +86,9 @@ Plugin is updatefriendly, all needed migration from older versions, will be done
 
 
 == Changelog ==
-<h4>1.3</h4>
+<h4>2.0 alpha</h4>
 <ul>
-<li></li>
+<li>Reworked Code. Everything new!</li>
 </ul>
 <h4>1.2.2</h4>
 <ul>
