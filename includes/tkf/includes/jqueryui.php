@@ -12,8 +12,8 @@ class TK_Jqueryui{
 	/**
 	 * PHP 4 constructor
 	 *
-	 * @package Themekraft Framework
-	 * @since 0.1.0
+	 * @package Skip
+	 * @since 1.0
 	 */
 	function tk_jqueryui(){
 		$this->__construct();
@@ -22,8 +22,8 @@ class TK_Jqueryui{
 	/**
 	 * PHP 5 constructor
 	 *
-	 * @package Themekraft Framework
-	 * @since 0.1.0
+	 * @package Skip
+	 * @since 1.0
 	 */
 	function __construct(){
 		$this->wp_version = $GLOBALS['wp_version'];
@@ -38,8 +38,8 @@ class TK_Jqueryui{
 	/**
 	 * jQueryui loader
 	 *
-	 * @package Themekraft Framework
-	 * @since 0.1.0
+	 * @package Skip
+	 * @since 1.0
 	 * 
 	 * @param array $components Array with the component names
 	 * @param array $args Array of [ $css Put on false if no css should be included ]
@@ -109,8 +109,8 @@ class TK_Jqueryui{
 	/**
 	 * Getting jQueryui component ???
 	 *
-	 * @package Themekraft Framework
-	 * @since 0.1.0
+	 * @package Skip
+	 * @since 1.0
 	 * 
 	 * @param array $components Array with the component names
 	 * @param array $args Array of [ $css Put on false if no css should be included ]
@@ -122,8 +122,8 @@ class TK_Jqueryui{
 	/**
 	 * Adding jQueryui component
 	 *
-	 * @package Themekraft Framework
-	 * @since 0.1.0
+	 * @package Skip
+	 * @since 1.0
 	 * 
 	 * @param array $components Array with the component names
 	 * @param array $args Array of [ $css Put on false if no css should be included ]

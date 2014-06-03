@@ -10,8 +10,8 @@ class TK_Form extends TK_HTML{
 	/**
 	 * PHP 4 constructor
 	 *
-	 * @package Themekraft Framework
-	 * @since 0.1.0
+	 * @package Skip
+	 * @since 1.0
 	 * 
 	 * @param string $action The action of the form
 	 * @param array $args Array of [ $method form method, $action form action ]
@@ -23,8 +23,8 @@ class TK_Form extends TK_HTML{
 	/**
 	 * PHP 5 constructor
 	 *
-	 * @package Themekraft Framework
-	 * @since 0.1.0
+	 * @package Skip
+	 * @since 1.0
 	 * 
 	 * @param string $action The action of the form
 	 * @param array $args Array of [ $method form method, $action form action ]
@@ -50,8 +50,8 @@ class TK_Form extends TK_HTML{
 	/**
 	 * Getting the form html
 	 *
-	 * @package Themekraft Framework
-	 * @since 0.1.0
+	 * @package Skip
+	 * @since 1.0
 	 * 
 	 * @return string $html The form content
 	 * 

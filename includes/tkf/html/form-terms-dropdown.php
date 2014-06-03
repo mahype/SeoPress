@@ -11,8 +11,8 @@ class TK_Form_Terms_Dropdown extends TK_Form_Element {
     /**
      * PHP 4 constructor
      *
-     * @package Themekraft Framework
-     * @since 0.1.0
+     * @package Skip
+     * @since 1.0
      * 
      * @param array $args 
      */
@@ -23,8 +23,8 @@ class TK_Form_Terms_Dropdown extends TK_Form_Element {
     /**
      * PHP 5 constructor
      *
-     * @package Themekraft Framework
-     * @since 0.1.0
+     * @package Skip
+     * @since 1.0
      * 
      * @param array $args 
      */
@@ -86,8 +86,8 @@ class TK_Form_Terms_Dropdown extends TK_Form_Element {
     /**
      * Getting HTML of checkbox
      *
-     * @package Themekraft Framework
-     * @since 0.1.0
+     * @package Skip
+     * @since 1.0
      * 
      * @return string $html The HTML of checkbox
      */

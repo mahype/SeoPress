@@ -5,8 +5,8 @@ class TK_Jqueryui_Tabs extends TK_HTML{
 	/**
 	 * PHP 4 constructor
 	 *
-	 * @package Themekraft Framework
-	 * @since 0.1.0
+	 * @package Skip
+	 * @since 1.0
 	 * 
 	 */
 	function tk_jqueryui_tabs( $id = '' ){
@@ -16,8 +16,8 @@ class TK_Jqueryui_Tabs extends TK_HTML{
 	/**
 	 * PHP 5 constructor
 	 *
-	 * @package Themekraft Framework
-	 * @since 0.1.0
+	 * @package Skip
+	 * @since 1.0
 	 * 
 	 */
 	function __construct( $id = '' ){
@@ -28,8 +28,8 @@ class TK_Jqueryui_Tabs extends TK_HTML{
 	/**
 	 * Adding tab
 	 *
-	 * @package Themekraft Framework
-	 * @since 0.1.0
+	 * @package Skip
+	 * @since 1.0
 	 * 
 	 * @param string $id Id of the tab
 	 * @param string $title Title of the tab
@@ -44,8 +44,8 @@ class TK_Jqueryui_Tabs extends TK_HTML{
 	/**
 	 * Getting the tabs html
 	 *
-	 * @package Themekraft Framework
-	 * @since 0.1.0
+	 * @package Skip
+	 * @since 1.0
 	 * 
 	 * @return string $html The tabs as html
 	 * 

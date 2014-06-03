@@ -6,8 +6,8 @@ class TK_Values{
 	/**
 	 * PHP 4 constructor
 	 *
-	 * @package Themekraft Framework
-	 * @since 0.1.0
+	 * @package Skip
+	 * @since 1.0
 	 * 
 	 */
 	function tk_values( $option_group = '' ){
@@ -17,8 +17,8 @@ class TK_Values{
 	/**
 	 * PHP 5 constructor
 	 *
-	 * @package Themekraft Framework
-	 * @since 0.1.0
+	 * @package Skip
+	 * @since 1.0
 	 * 
 	 */
 	function __construct( $option_group = ''  ){

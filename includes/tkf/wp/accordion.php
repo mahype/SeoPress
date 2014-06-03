@@ -8,8 +8,8 @@ class TK_Jqueryui_Accordion extends TK_HTML{
 	/**
 	 * PHP 4 constructor
 	 *
-	 * @package Themekraft Framework
-	 * @since 0.1.0
+	 * @package Skip
+	 * @since 1.0
 	 * 
 	 */
 	function tk_jqueryui_accordion( $id = '' , $args = array() ){
@@ -19,8 +19,8 @@ class TK_Jqueryui_Accordion extends TK_HTML{
 	/**
 	 * PHP 5 constructor
 	 *
-	 * @package Themekraft Framework
-	 * @since 0.1.0
+	 * @package Skip
+	 * @since 1.0
 	 * 
 	 */
 	function __construct( $id = '' , $args = array() ){
@@ -40,8 +40,8 @@ class TK_Jqueryui_Accordion extends TK_HTML{
 	/**
 	 * Adding section to accordion
 	 *
-	 * @package Themekraft Framework
-	 * @since 0.1.0
+	 * @package Skip
+	 * @since 1.0
 	 * 
 	 * @param string $id Id of the section
 	 * @param string $title Title of the section
@@ -67,8 +67,8 @@ class TK_Jqueryui_Accordion extends TK_HTML{
 	/**
 	 * Getting the accordion html
 	 *
-	 * @package Themekraft Framework
-	 * @since 0.1.0
+	 * @package Skip
+	 * @since 1.0
 	 * 
 	 * @return string $html The accordion as html
 	 * 

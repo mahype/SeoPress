@@ -18,8 +18,8 @@ class TK_WML_Parser{
 	/**
 	 * PHP 4 constructor
 	 *
-	 * @package Themekraft Framework
-	 * @since 0.1.0
+	 * @package Skip
+	 * @since 1.0
 	 * 
 	 */
 	function tk_wpml_parser( $return_object = TRUE ){
@@ -29,8 +29,8 @@ class TK_WML_Parser{
 	/**
 	 * PHP 5 constructor
 	 *
-	 * @package Themekraft Framework
-	 * @since 0.1.0
+	 * @package Skip
+	 * @since 1.0
 	 * 
 	 */
 	function __construct( $return_object = TRUE ){

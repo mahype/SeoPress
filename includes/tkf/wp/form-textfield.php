@@ -7,8 +7,8 @@ class TK_WP_Form_Textfield extends TK_Form_Textfield{
 	/**
 	 * PHP 4 constructor
 	 *
-	 * @package Themekraft Framework
-	 * @since 0.1.0
+	 * @package Skip
+	 * @since 1.0
 	 * 
 	 * @param string $name Name of textfield
 	 * @param array $args Array of [ $id , $value,  $extra Extra textfield code   ]
@@ -20,8 +20,8 @@ class TK_WP_Form_Textfield extends TK_Form_Textfield{
 	/**
 	 * PHP 5 constructor
 	 *
-	 * @package Themekraft Framework
-	 * @since 0.1.0
+	 * @package Skip
+	 * @since 1.0
 	 * 
 	 * @param string $name Name of textfield
 	 * @param array $args Array of [ $id,  $extra Extra textfield code, $option_group Name of optiongroup where textfield have to be saved   ]

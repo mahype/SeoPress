@@ -5,8 +5,8 @@ class TK_WP_Post{
 	/**
 	 * PHP 4 constructor
 	 *
-	 * @package Themekraft Framework
-	 * @since 0.1.0
+	 * @package Skip
+	 * @since 1.0
 	 * 
 	 */
 	function tk_wp_post( $id = '' , $args = array() ){
@@ -16,8 +16,8 @@ class TK_WP_Post{
 	/**
 	 * PHP 5 constructor
 	 *
-	 * @package Themekraft Framework
-	 * @since 0.1.0
+	 * @package Skip
+	 * @since 1.0
 	 * 
 	 */
 	function __construct( $id = '' , $args = array() ){

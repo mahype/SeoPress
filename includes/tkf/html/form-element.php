@@ -9,8 +9,8 @@ class TK_Form_Element{
 	/**
 	 * PHP 4 constructor
 	 *
-	 * @package Themekraft Framework
-	 * @since 0.1.0
+	 * @package Skip
+	 * @since 1.0
 	 * 
 	 * @param array $args Array of [ $id Id, $name Name, $value Value ]
 	 */
@@ -21,8 +21,8 @@ class TK_Form_Element{
 	/**
 	 * PHP 5 constructor
 	 *
-	 * @package Themekraft Framework
-	 * @since 0.1.0
+	 * @package Skip
+	 * @since 1.0
 	 * 
 	 * @param array $args Array of [ $id Id, $name Name, $value Value ]
 	 */
@@ -43,8 +43,8 @@ class TK_Form_Element{
 	/**
 	 * Getting content ( empty function )
 	 *
-	 * @package Themekraft Framework
-	 * @since 0.1.0
+	 * @package Skip
+	 * @since 1.0
 	 */
 	function get_html(){
 	}
@@ -52,8 +52,8 @@ class TK_Form_Element{
 	/**
 	 * Echo content
 	 *
-	 * @package Themekraft Framework
-	 * @since 0.1.0
+	 * @package Skip
+	 * @since 1.0
 	 */
 	function write_html(){
 		echo $this->get_html();		

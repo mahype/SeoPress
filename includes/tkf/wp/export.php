@@ -5,8 +5,8 @@ class TK_Export_Button extends TK_WP_Form_Button{
 	/**
 	 * PHP 4 constructor
 	 *
-	 * @package Themekraft Framework
-	 * @since 0.1.0
+	 * @package Skip
+	 * @since 1.0
 	 * 
 	 * @param array $args Array of [ $value Value, $args   ]
 	 */
@@ -17,8 +17,8 @@ class TK_Export_Button extends TK_WP_Form_Button{
 	/**
 	 * PHP 5 constructor
 	 *
-	 * @package Themekraft Framework
-	 * @since 0.1.0
+	 * @package Skip
+	 * @since 1.0
 	 * 
 	 * @param array $args Array of  [ $value Value, $args   ]
 	 */

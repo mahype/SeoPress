@@ -7,8 +7,8 @@ class TK_WP_Form_Checkbox extends TK_Form_Checkbox{
 	/**
 	 * PHP 4 constructor
 	 *
-	 * @package Themekraft Framework
-	 * @since 0.1.0
+	 * @package Skip
+	 * @since 1.0
 	 * 
 	 * @param string $name Name of checkbox
 	 * @param array $args Array of [ $id Id, $extra Extra checkbox code   ]
@@ -20,8 +20,8 @@ class TK_WP_Form_Checkbox extends TK_Form_Checkbox{
 	/**
 	 * PHP 5 constructor
 	 *
-	 * @package Themekraft Framework
-	 * @since 0.1.0
+	 * @package Skip
+	 * @since 1.0
 	 * 
 	 * @param string $name Name of checkbox
 	 * @param array $args Array of [ $id Id, $extra Extra checkbox code, $option_group Name of optiongroup where checkbox have to be saved ]

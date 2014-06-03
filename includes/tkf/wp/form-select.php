@@ -7,8 +7,8 @@ class TK_WP_Form_Select extends TK_Form_Select{
 	/**
 	 * PHP 4 constructor
 	 *
-	 * @package Themekraft Framework
-	 * @since 0.1.0
+	 * @package Skip
+	 * @since 1.0
 	 * 
 	 * @param string $name Name of select field
 	 * @param array $args Array of [ $id , $extra Extra select field code   ]
@@ -20,8 +20,8 @@ class TK_WP_Form_Select extends TK_Form_Select{
 	/**
 	 * PHP 5 constructor
 	 *
-	 * @package Themekraft Framework
-	 * @since 0.1.0
+	 * @package Skip
+	 * @since 1.0
 	 * 
 	 * @param string $name Name of select field
 	 * @param array $args Array of [ $id , $extra Extra select field code, $option_group Name of optiongroup where select field have to be saved ]

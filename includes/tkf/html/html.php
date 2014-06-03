@@ -6,8 +6,8 @@ class TK_HTML{
 	/**
 	 * PHP 4 constructor
 	 *
-	 * @package Themekraft Framework
-	 * @since 0.1.0
+	 * @package Skip
+	 * @since 1.0
 	 */
 	function tk_html(){
 		$this->__construct();
@@ -16,8 +16,8 @@ class TK_HTML{
 	/**
 	 * PHP 5 constructor
 	 *
-	 * @package Themekraft Framework
-	 * @since 0.1.0
+	 * @package Skip
+	 * @since 1.0
 	 */
 	function __construct(){
 		$this->elements = array();
@@ -26,8 +26,8 @@ class TK_HTML{
 	/**
 	 * Adding elements to content
 	 *
-	 * @package Themekraft Framework
-	 * @since 0.1.0
+	 * @package Skip
+	 * @since 1.0
 	 * 
 	 * @param string $element Element which have to be added to content
 	 * 
@@ -39,8 +39,8 @@ class TK_HTML{
 	/**
 	 * Getting the content
 	 *
-	 * @package Themekraft Framework
-	 * @since 0.1.0
+	 * @package Skip
+	 * @since 1.0
 	 * 
 	 * @return string $html The whole content
 	 * 
@@ -57,8 +57,8 @@ class TK_HTML{
 	/**
 	 * Echo the content
 	 *
-	 * @package Themekraft Framework
-	 * @since 0.1.0
+	 * @package Skip
+	 * @since 1.0
 	 * 
 	 */
 	function write_html(){

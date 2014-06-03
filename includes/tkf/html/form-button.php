@@ -9,8 +9,8 @@ class TK_Form_Button extends TK_Form_Element{
 	/**
 	 * PHP 4 constructor
 	 *
-	 * @package Themekraft Framework
-	 * @since 0.1.0
+	 * @package Skip
+	 * @since 1.0
 	 * 
 	 * @param array $args Array of [ $id Id, $name Name, $value Value, $submit use submit, $extra Extra checkbox code   ]
 	 */
@@ -21,8 +21,8 @@ class TK_Form_Button extends TK_Form_Element{
 	/**
 	 * PHP 5 constructor
 	 *
-	 * @package Themekraft Framework
-	 * @since 0.1.0
+	 * @package Skip
+	 * @since 1.0
 	 * 
 	 * @param array $args Array of [ $id Id, $name Name, $value Value, $submit use submit, $extra Extra checkbox code   ]
 	 */
@@ -54,8 +54,8 @@ class TK_Form_Button extends TK_Form_Element{
 	/**
 	 * Getting HTML of button
 	 *
-	 * @package Themekraft Framework
-	 * @since 0.1.0
+	 * @package Skip
+	 * @since 1.0
 	 * 
 	 * @return string $html The HTML of button
 	 */

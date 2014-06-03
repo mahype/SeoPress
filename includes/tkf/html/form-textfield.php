@@ -9,8 +9,8 @@ class TK_Form_Textfield extends TK_Form_Element{
 	/**
 	 * PHP 4 constructor
 	 *
-	 * @package Themekraft Framework
-	 * @since 0.1.0
+	 * @package Skip
+	 * @since 1.0
 	 * 
 	 * @param array $args Array of [ $id Id, $name Name, $value Value, $extra Extra textfield code ]
 	 */
@@ -21,8 +21,8 @@ class TK_Form_Textfield extends TK_Form_Element{
 	/**
 	 * PHP 5 constructor
 	 *
-	 * @package Themekraft Framework
-	 * @since 0.1.0
+	 * @package Skip
+	 * @since 1.0
 	 * 
 	 * @param array $args Array of [ $id Id, $name Name, $value Value, $extra Extra textfield code ]
 	 */
@@ -57,8 +57,8 @@ class TK_Form_Textfield extends TK_Form_Element{
 	/**
 	 * Getting HTML of textfield
 	 *
-	 * @package Themekraft Framework
-	 * @since 0.1.0
+	 * @package Skip
+	 * @since 1.0
 	 * 
 	 * @return string $html The html of the textfield
 	 */

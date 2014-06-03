@@ -11,8 +11,8 @@ class TK_Form_select extends TK_Form_element{
 	/**
 	 * PHP 4 constructor
 	 *
-	 * @package Themekraft Framework
-	 * @since 0.1.0
+	 * @package Skip
+	 * @since 1.0
 	 * 
 	 * @param array $args Array of [ $id Id, $name Name, $value Value, $extra Extra selectfield code ]
 	 */
@@ -23,8 +23,8 @@ class TK_Form_select extends TK_Form_element{
 	/**
 	 * PHP 5 constructor
 	 *
-	 * @package Themekraft Framework
-	 * @since 0.1.0
+	 * @package Skip
+	 * @since 1.0
 	 * 
 	 * @param array $args Array of [ $id Id, $name Name, $value Value, $extra Extra selectfield code ]
 	 */
@@ -56,8 +56,8 @@ class TK_Form_select extends TK_Form_element{
 	/**
 	 * Adds an option to the select field
 	 *
-	 * @package Themekraft Framework
-	 * @since 0.1.0
+	 * @package Skip
+	 * @since 1.0
 	 * 
 	 * @param string $option The option to show in list
 	 * @param array $args Array of [ $value Value, $extra Extra option code ]
@@ -78,8 +78,8 @@ class TK_Form_select extends TK_Form_element{
 	/**
 	 * Getting HTML of select box
 	 *
-	 * @package Themekraft Framework
-	 * @since 0.1.0
+	 * @package Skip
+	 * @since 1.0
 	 * 
 	 * @return string $html The HTML of select box
 	 */

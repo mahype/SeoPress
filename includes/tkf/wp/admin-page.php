@@ -16,8 +16,8 @@ class TK_Admin_Pages extends TK_HTML{
 	/**
 	 * PHP 4 constructor
 	 *
-	 * @package Themekraft Framework
-	 * @since 0.1.0
+	 * @package Skip
+	 * @since 1.0
 	 * 
 	 * @param array $args Array of [ $headline , $icon Path to icon on Page, $parent_slug Parent slug where menue appears, $page_title, $menue_title, $capability, $menue_slug ]
 	 */
@@ -28,8 +28,8 @@ class TK_Admin_Pages extends TK_HTML{
 	/**
 	 * PHP 5 constructor
 	 *
-	 * @package Themekraft Framework
-	 * @since 0.1.0
+	 * @package Skip
+	 * @since 1.0
 	 * 
 	 * @param array $args Array of [ $headline , $icon Path to icon on Page, $parent_slug Parent slug where menue appears, $page_title, $menue_title, $capability, $menue_slug ]
 	 */
@@ -110,8 +110,8 @@ class TK_Admin_Pages extends TK_HTML{
 	/**
 	 * Getting HTML of admin page
 	 *
-	 * @package Themekraft Framework
-	 * @since 0.1.0
+	 * @package Skip
+	 * @since 1.0
 	 * 
 	 * @return string $html The HTML of the admin page
 	 */
@@ -185,8 +185,8 @@ class TK_Admin_Page_Creator{
 	/**
 	 * PHP 4 constructor
 	 *
-	 * @package Themekraft Framework
-	 * @since 0.1.0
+	 * @package Skip
+	 * @since 1.0
 	 * 
 	 * @param array $args Array of [ $headline ... ]
 	 */
@@ -196,8 +196,8 @@ class TK_Admin_Page_Creator{
 	/**
 	 * PHP 5 constructor
 	 *
-	 * @package Themekraft Framework
-	 * @since 0.1.0
+	 * @package Skip
+	 * @since 1.0
 	 * 
 	 * @param array $args Array of [ $headline , $icon Path to icon on Page, $parent_slug Parent slug where menue appears, $page_title, $menue_title, $capability, $menu_slug ]
 	 */

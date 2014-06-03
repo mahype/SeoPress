@@ -7,8 +7,8 @@ class TK_WP_Form_Terms_Checklist extends TK_Form_Terms_Checklist {
     /**
      * PHP 4 constructor
      *
-     * @package Themekraft Framework
-     * @since 0.1.0
+     * @package Skip
+     * @since 1.0
      * 
      * @param string $name Name of terms checklist
      * @param array $args 
@@ -20,8 +20,8 @@ class TK_WP_Form_Terms_Checklist extends TK_Form_Terms_Checklist {
     /**
      * PHP 5 constructor
      *
-     * @package Themekraft Framework
-     * @since 0.1.0
+     * @package Skip
+     * @since 1.0
      * 
      * @param string $name Name of terms checklist
      * @param array $args 

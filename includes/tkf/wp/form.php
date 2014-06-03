@@ -7,8 +7,8 @@ class TK_WP_Form extends TK_Form{
 	/**
 	 * PHP 4 constructor
 	 *
-	 * @package Themekraft Framework
-	 * @since 0.1.0
+	 * @package Skip
+	 * @since 1.0
 	 * 
 	 * @param string $option_group The name of the option group
 	 * @param string $id The id of the form
@@ -20,8 +20,8 @@ class TK_WP_Form extends TK_Form{
 	/**
 	 * PHP 5 constructor
 	 *
-	 * @package Themekraft Framework
-	 * @since 0.1.0
+	 * @package Skip
+	 * @since 1.0
 	 * 
 	 * @param string $option_group The name of the option group
 	 * @param string $id The id of the form
@@ -39,8 +39,8 @@ class TK_WP_Form extends TK_Form{
 	/**
 	 * Getting the form html
 	 *
-	 * @package Themekraft Framework
-	 * @since 0.1.0
+	 * @package Skip
+	 * @since 1.0
 	 * 
 	 * @return string $html The form content
 	 * 

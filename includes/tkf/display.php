@@ -7,8 +7,8 @@ class TK_Display{
 	/**
 	 * PHP 4 constructor
 	 *
-	 * @package Themekraft Framework
-	 * @since 0.1.0
+	 * @package Skip
+	 * @since 1.0
 	 * 
 	 */
 	function tk_display( $display = '' ){
@@ -18,8 +18,8 @@ class TK_Display{
 	/**
 	 * PHP 5 constructor
 	 *
-	 * @package Themekraft Framework
-	 * @since 0.1.0
+	 * @package Skip
+	 * @since 1.0
 	 * 
 	 */
 	function __construct( $display = '' ){
@@ -29,8 +29,8 @@ class TK_Display{
 	/**
 	 * Diplay builder for HTML
 	 *
-	 * @package Themekraft Framework
-	 * @since 0.1.0
+	 * @package Skip
+	 * @since 1.0
 	 * 
 	 * @param mixed $elements Array / Object of elements which have to be shown
 	 * @return string $html The HTML of the display object
